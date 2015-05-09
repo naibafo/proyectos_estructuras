@@ -1,0 +1,325 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x2030320 .scope module, "TestBench" "TestBench" 2 3;
+ .timescale 0 0;
+v0x2076ab0_0 .var "A", 31 0;
+v0x2076b30_0 .var "Ack_Flag", 0 0;
+v0x2076bb0_0 .var "B", 31 0;
+v0x2076c80_0 .var "Clock", 0 0;
+v0x2076d00_0 .net "Done", 0 0, v0x2076480_0; 1 drivers
+v0x2076db0_0 .net "Idle", 0 0, v0x2076500_0; 1 drivers
+v0x2076e30_0 .var "Reset", 0 0;
+v0x2076ee0_0 .net "Result", 31 0, v0x2075a10_0; 1 drivers
+v0x2077000_0 .var "Valid_Data_Flag", 0 0;
+E_0x20315d0 .event negedge, v0x2076500_0;
+E_0x2047170 .event posedge, v0x2076500_0;
+E_0x2030410 .event negedge, v0x2076480_0;
+E_0x205c940 .event posedge, v0x2076480_0;
+S_0x2041f70 .scope module, "uut" "Multiplicator" 2 7, 3 16, S_0x2030320;
+ .timescale 0 0;
+v0x2076030_0 .net "Clock", 0 0, v0x2076c80_0; 1 drivers
+v0x2076120_0 .net "Reset", 0 0, v0x2076e30_0; 1 drivers
+v0x20761c0_0 .net "iAcknoledged", 0 0, v0x2076b30_0; 1 drivers
+v0x2076260_0 .net "iData_A", 31 0, v0x2076ab0_0; 1 drivers
+v0x2076310_0 .net "iData_B", 31 0, v0x2076bb0_0; 1 drivers
+v0x20763c0_0 .net "iValid_Data", 0 0, v0x2077000_0; 1 drivers
+v0x2076480_0 .var "oDone", 0 0;
+v0x2076500_0 .var "oIdle", 0 0;
+v0x20765d0_0 .alias "oResult", 31 0, v0x2076ee0_0;
+v0x2076650_0 .var "rCounterReset", 0 0;
+v0x2076760_0 .var "rCurrentState", 1 0;
+v0x20767e0_0 .var "rData_Reset", 0 0;
+v0x2076900_0 .var "rNextState", 1 0;
+v0x2076980_0 .net "wCounter", 4 0, v0x2075f90_0; 1 drivers
+E_0x2042060 .event edge, v0x2076760_0, v0x20763c0_0, v0x2075f90_0, v0x20761c0_0;
+S_0x2075d20 .scope module, "Counter_32b" "Counter" 3 43, 4 54, S_0x2041f70;
+ .timescale 0 0;
+P_0x2075a98 .param/l "SIZE" 4 54, +C4<0101>;
+v0x2075e90_0 .alias "Clock", 0 0, v0x2076030_0;
+v0x2075f10_0 .net "iCounterReset", 0 0, v0x2076650_0; 1 drivers
+v0x2075f90_0 .var "oCounter", 4 0;
+S_0x2054d20 .scope module, "DataPath" "Data_Path" 3 56, 4 12, S_0x2041f70;
+ .timescale 0 0;
+v0x2054e70_0 .alias "Clock", 0 0, v0x2076030_0;
+v0x2075780_0 .net "add_sel", 0 0, L_0x2077080; 1 drivers
+v0x2075820_0 .alias "iData_A", 31 0, v0x2076260_0;
+v0x20758c0_0 .alias "iData_B", 31 0, v0x2076310_0;
+v0x2075970_0 .net "iData_Reset", 0 0, v0x20767e0_0; 1 drivers
+v0x2075a10_0 .var "oProduct", 31 0;
+v0x2075af0_0 .var "reg_A", 31 0;
+v0x2075b90_0 .var "reg_B", 31 0;
+v0x2075c80_0 .var "wTmp_Sum", 31 0;
+E_0x2054e10 .event posedge, v0x2054e70_0;
+E_0x2054e40 .event edge, v0x2075780_0, v0x2075a10_0, v0x2075af0_0;
+L_0x2077080 .part v0x2076bb0_0, 0, 1;
+    .scope S_0x2075d20;
+T_0 ;
+    %wait E_0x2054e10;
+    %load/v 8, v0x2075f10_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %set/v v0x2075f90_0, 0, 5;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v0x2075f90_0, 5;
+    %mov 13, 0, 27;
+    %addi 8, 1, 32;
+    %set/v v0x2075f90_0, 8, 5;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x2054d20;
+T_1 ;
+    %set/v v0x2075c80_0, 0, 32;
+    %end;
+    .thread T_1;
+    .scope S_0x2054d20;
+T_2 ;
+    %wait E_0x2054e40;
+    %load/v 8, v0x2075780_0, 1;
+    %jmp/0  T_2.0, 8;
+    %load/v 9, v0x2075a10_0, 32;
+    %jmp/1  T_2.2, 8;
+T_2.0 ; End of true expr.
+    %load/v 41, v0x2075a10_0, 32;
+    %load/v 73, v0x2075af0_0, 32;
+    %add 41, 73, 32;
+    %jmp/0  T_2.1, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_2.2;
+T_2.1 ;
+    %mov 9, 41, 32; Return false value
+T_2.2 ;
+    %set/v v0x2075c80_0, 9, 32;
+    %jmp T_2;
+    .thread T_2, $push;
+    .scope S_0x2054d20;
+T_3 ;
+    %wait E_0x2054e10;
+    %load/v 8, v0x2075970_0, 1;
+    %jmp/0  T_3.0, 8;
+    %load/v 9, v0x20758c0_0, 32;
+    %jmp/1  T_3.2, 8;
+T_3.0 ; End of true expr.
+    %load/v 41, v0x2075b90_0, 32;
+    %ix/load 0, 1, 0;
+    %mov 4, 0, 1;
+    %shiftr/i0  41, 32;
+    %jmp/0  T_3.1, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_3.2;
+T_3.1 ;
+    %mov 9, 41, 32; Return false value
+T_3.2 ;
+    %set/v v0x2075b90_0, 9, 32;
+    %load/v 8, v0x2075970_0, 1;
+    %jmp/0  T_3.3, 8;
+    %load/v 9, v0x2075820_0, 32;
+    %jmp/1  T_3.5, 8;
+T_3.3 ; End of true expr.
+    %load/v 41, v0x2075af0_0, 32;
+    %ix/load 0, 1, 0;
+    %mov 4, 0, 1;
+    %shiftr/i0  41, 32;
+    %jmp/0  T_3.4, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_3.5;
+T_3.4 ;
+    %mov 9, 41, 32; Return false value
+T_3.5 ;
+    %set/v v0x2075af0_0, 9, 32;
+    %load/v 8, v0x2075970_0, 1;
+    %jmp/0  T_3.6, 8;
+    %mov 9, 0, 32;
+    %jmp/1  T_3.8, 8;
+T_3.6 ; End of true expr.
+    %load/v 41, v0x2075c80_0, 32;
+    %jmp/0  T_3.7, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_3.8;
+T_3.7 ;
+    %mov 9, 41, 32; Return false value
+T_3.8 ;
+    %set/v v0x2075a10_0, 9, 32;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x2041f70;
+T_4 ;
+    %wait E_0x2054e10;
+    %load/v 8, v0x2076120_0, 1;
+    %jmp/0xz  T_4.0, 8;
+    %set/v v0x2076760_0, 0, 2;
+    %jmp T_4.1;
+T_4.0 ;
+    %load/v 8, v0x2076900_0, 2;
+    %set/v v0x2076760_0, 8, 2;
+T_4.1 ;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x2041f70;
+T_5 ;
+    %wait E_0x2042060;
+    %load/v 8, v0x2076760_0, 2;
+    %cmpi/u 8, 0, 2;
+    %jmp/1 T_5.0, 6;
+    %cmpi/u 8, 1, 2;
+    %jmp/1 T_5.1, 6;
+    %cmpi/u 8, 2, 2;
+    %jmp/1 T_5.2, 6;
+    %cmpi/u 8, 3, 2;
+    %jmp/1 T_5.3, 6;
+    %jmp T_5.4;
+T_5.0 ;
+    %movi 8, 1, 2;
+    %set/v v0x2076900_0, 8, 2;
+    %set/v v0x20767e0_0, 1, 1;
+    %set/v v0x2076650_0, 1, 1;
+    %set/v v0x2076480_0, 0, 1;
+    %set/v v0x2076500_0, 0, 1;
+    %jmp T_5.4;
+T_5.1 ;
+    %load/v 8, v0x20763c0_0, 1;
+    %jmp/0  T_5.5, 8;
+    %movi 9, 2, 2;
+    %jmp/1  T_5.7, 8;
+T_5.5 ; End of true expr.
+    %movi 11, 1, 2;
+    %jmp/0  T_5.6, 8;
+ ; End of false expr.
+    %blend  9, 11, 2; Condition unknown.
+    %jmp  T_5.7;
+T_5.6 ;
+    %mov 9, 11, 2; Return false value
+T_5.7 ;
+    %set/v v0x2076900_0, 9, 2;
+    %set/v v0x2076650_0, 1, 1;
+    %set/v v0x20767e0_0, 1, 1;
+    %set/v v0x2076480_0, 0, 1;
+    %set/v v0x2076500_0, 1, 1;
+    %jmp T_5.4;
+T_5.2 ;
+    %load/v 8, v0x2076980_0, 5;
+    %cmpi/u 8, 31, 5;
+    %mov 8, 4, 1;
+    %jmp/0  T_5.8, 8;
+    %mov 9, 1, 2;
+    %jmp/1  T_5.10, 8;
+T_5.8 ; End of true expr.
+    %movi 11, 2, 2;
+    %jmp/0  T_5.9, 8;
+ ; End of false expr.
+    %blend  9, 11, 2; Condition unknown.
+    %jmp  T_5.10;
+T_5.9 ;
+    %mov 9, 11, 2; Return false value
+T_5.10 ;
+    %set/v v0x2076900_0, 9, 2;
+    %set/v v0x20767e0_0, 0, 1;
+    %set/v v0x2076650_0, 0, 1;
+    %set/v v0x2076480_0, 0, 1;
+    %set/v v0x2076500_0, 0, 1;
+    %jmp T_5.4;
+T_5.3 ;
+    %load/v 8, v0x20761c0_0, 1;
+    %jmp/0  T_5.11, 8;
+    %movi 9, 1, 2;
+    %jmp/1  T_5.13, 8;
+T_5.11 ; End of true expr.
+    %jmp/0  T_5.12, 8;
+ ; End of false expr.
+    %blend  9, 1, 2; Condition unknown.
+    %jmp  T_5.13;
+T_5.12 ;
+    %mov 9, 1, 2; Return false value
+T_5.13 ;
+    %set/v v0x2076900_0, 9, 2;
+    %set/v v0x20767e0_0, 0, 1;
+    %set/v v0x2076650_0, 1, 1;
+    %set/v v0x2076480_0, 1, 1;
+    %set/v v0x2076500_0, 0, 1;
+    %jmp T_5.4;
+T_5.4 ;
+    %jmp T_5;
+    .thread T_5, $push;
+    .scope S_0x2030320;
+T_6 ;
+    %load/v 8, v0x2076c80_0, 1;
+    %jmp/0xz  T_6.0, 8;
+    %delay 5, 0;
+    %set/v v0x2076c80_0, 0, 1;
+    %jmp T_6.1;
+T_6.0 ;
+    %delay 5, 0;
+    %set/v v0x2076c80_0, 1, 1;
+T_6.1 ;
+    %jmp T_6;
+    .thread T_6;
+    .scope S_0x2030320;
+T_7 ;
+    %wait E_0x205c940;
+    %delay 20, 0;
+    %set/v v0x2076b30_0, 1, 1;
+    %jmp T_7;
+    .thread T_7;
+    .scope S_0x2030320;
+T_8 ;
+    %wait E_0x2030410;
+    %vpi_func 2 47 "$random", 8, 32;
+    %movi 40, 10, 32;
+    %mod/s 8, 40, 32;
+    %set/v v0x2076ab0_0, 8, 32;
+    %vpi_func 2 48 "$random", 8, 32;
+    %movi 40, 10, 32;
+    %mod/s 8, 40, 32;
+    %set/v v0x2076bb0_0, 8, 32;
+    %delay 5, 0;
+    %set/v v0x2076b30_0, 0, 1;
+    %jmp T_8;
+    .thread T_8;
+    .scope S_0x2030320;
+T_9 ;
+    %wait E_0x2047170;
+    %delay 20, 0;
+    %set/v v0x2077000_0, 1, 1;
+    %jmp T_9;
+    .thread T_9;
+    .scope S_0x2030320;
+T_10 ;
+    %wait E_0x20315d0;
+    %delay 5, 0;
+    %set/v v0x2077000_0, 0, 1;
+    %jmp T_10;
+    .thread T_10;
+    .scope S_0x2030320;
+T_11 ;
+    %vpi_call 2 65 "$dumpfile", "Waves.vcd";
+    %vpi_call 2 66 "$dumpvars";
+    %delay 5, 0;
+    %set/v v0x2076c80_0, 0, 1;
+    %set/v v0x2076e30_0, 0, 1;
+    %set/v v0x2076b30_0, 0, 1;
+    %set/v v0x2077000_0, 0, 1;
+    %set/v v0x2076ab0_0, 0, 32;
+    %set/v v0x2076bb0_0, 0, 32;
+    %delay 15, 0;
+    %set/v v0x2076e30_0, 1, 1;
+    %delay 80, 0;
+    %set/v v0x2076e30_0, 0, 1;
+    %delay 5000, 0;
+    %vpi_call 2 79 "$finish";
+    %end;
+    .thread T_11;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "TestBench.v";
+    "./Mult_Controller.v";
+    "./Collaterals.v";

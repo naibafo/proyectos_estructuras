@@ -1,3 +1,6 @@
+`include "Collaterals.v"
+
+
 ////////////////////////////////////////////////////////////////////
 //// STATES DEFINITIONS
 
@@ -20,13 +23,14 @@ module Multiplicator
 	input	wire	iAcknoledged,		//	Input flaf that 
 	output	reg		oDone,				//	Output flag that indicates when the data is ready 
 	output	reg		oIdle,				//	Output flag that indicates when the data is ready
-	output	reg		oResult
+	output	wire 	[31:0]	oResult
 );
 
 /////////////////////////////////////////////////////////////////////////
 reg  [1:0] 	rCurrentState;
 reg  [1:0] 	rNextState;
 reg		  	rData_Select;
+reg 		rData_Reset;
 /////////////////////////////////////////////////////////////////////////
 
 
@@ -34,7 +38,7 @@ reg		  	rData_Select;
 // Counter Instance                                                    //
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 wire [4:0] wCounter;
-reg	  rCounterReset
+reg	  rCounterReset;
 
 Counter Counter_32b
 (
@@ -49,12 +53,13 @@ Counter Counter_32b
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 // Data_Path Instance                                                  //
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
-module Data_Path
+Data_Path DataPath
 (
 	.iData_A(iData_A), 			// Input data A  
 	.iData_B(iData_B),			// Input data B
 	.iData_Reset(rData_Reset),	// 
-	.oResult(oResult)
+	.Clock(Clock),
+	.oProduct(oResult)
 );
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 
@@ -68,7 +73,7 @@ always @ (posedge Clock)
 	begin
 		// Synchornous Reset
 		if(Reset)
-			rCurrentState = `Reset_State; 	// Move to reset state if Reset signal
+			rCurrentState = `STATE_RESET; 	// Move to reset state if Reset signal
 		else
 			rCurrentState = rNextState; 	// Change Current State
 	end
