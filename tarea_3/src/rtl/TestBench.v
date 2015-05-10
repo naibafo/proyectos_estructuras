@@ -5,20 +5,17 @@ module TestBench;
 	//Unit Under Test (Multiplicador) instance
 	
 	Multiplicator uut
-(
-	.iData_A(A),
-	.iData_B(B),	
-	.Clock(Clock),
-	.Reset(Reset),
-	.iValid_Data(Valid_Data_Flag),	
-	.iAcknoledged(Ack_Flag),		 
-	.oDone(Done),				
-	.oIdle(Idle),				
-	.oResult(Result)
-);
-
-
-
+	(
+		.iData_A(A),
+		.iData_B(B),	
+		.Clock(Clock),
+		.Reset(Reset),
+		.iValid_Data(Valid_Data_Flag),	
+		.iAcknoledged(Ack_Flag),		 
+		.oDone(Done),				
+		.oIdle(Idle),				
+		.oResult(Result)
+	);
 	// Signals definition
 	reg Clock;
 	reg Reset;
@@ -38,26 +35,33 @@ module TestBench;
 	  end
 	
 	always @ (posedge Done)
-	begin
-		# 20 Ack_Flag = 1;	
-	end
+		begin
+			# 20 Ack_Flag = 1;	
+		end
 	
+	/*always @ (negedge Done)
+		begin
+			A = $random % 10; 
+			B = $random % 10;
+			# 5  Ack_Flag = 0;	
+		end*/
+
 	always @ (negedge Done)
-	begin
-		A = $random % 10; 
-		B = $random % 10;
-		# 5  Ack_Flag = 0;	
-	end
+		begin
+			A = A+1'b1; 
+			B = $random % 10;
+			# 5  Ack_Flag = 0;	
+		end
 		
 	always @ (posedge Idle)
-	begin
-		# 20 Valid_Data_Flag = 1;	
-	end
+		begin
+			# 20 Valid_Data_Flag = 1;	
+		end
 	
 	always @ (negedge Idle)
-	begin
-		# 5 Valid_Data_Flag = 0;	
-	end
+		begin
+			# 5 Valid_Data_Flag = 0;	
+		end
 	
 	initial 
 	begin
