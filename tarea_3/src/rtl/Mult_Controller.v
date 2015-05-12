@@ -68,7 +68,7 @@ always @ (posedge Clock)
 	begin
 		// Synchornous Reset
 		if(Reset)
-			rCurrentState = `Reset_State; 	// Move to reset state if Reset signal
+			rCurrentState = `STATE_RESET; 	// Move to reset state if Reset signal
 		else
 			rCurrentState = rNextState; 	// Change Current State
 	end

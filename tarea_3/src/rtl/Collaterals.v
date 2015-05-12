@@ -31,7 +31,7 @@ assign wTmp_Sum = (add_sel) ? rResult : (rResult + reg_A);
 always (posedge Clock) 
 	begin
 		reg_B 	 = (iData_Reset) ? iData_B : (reg_B >> 1);
-		reg_A 	 = (iData_Reset) ? iData_A : (reg_A >> 1);
+		reg_A 	 = (iData_Reset) ? iData_A : (reg_A << 1);
 		oProduct = (iData_Reset) ? 32'b0   : wTmp_Sum ;
 	end
 
