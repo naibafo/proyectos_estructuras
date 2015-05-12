@@ -14,7 +14,8 @@ module Data_Path
 	input	wire	[31:0]	iData_A, 		// Input data A  
 	input	wire	[31:0]	iData_B,		// Input data B
 	input 	wire	        iData_Reset,	// 
-	output	reg	 	[31:0]	oResult			// 
+	input	wire 			Clock,			// 
+	output	reg		[31:0]	oProduct		// 
 );
 
 // Registers Definition
@@ -25,15 +26,17 @@ reg [31:0] reg_A;
 wire add_sel;
 assign add_sel = iData_B[0];
 // Define a Sum Result
-wire [31:0] wTmp_Sum;
-assign wTmp_Sum = (add_sel) ? rResult : (rResult + reg_A);
+reg [31:0] wTmp_Sum;
 
-always (posedge Clock) 
+assign wTmp_Sum = (add_sel) ? oProduct : (oProduct + reg_A);
+
+always @ (posedge Clock) 
 	begin
 		reg_B 	 = (iData_Reset) ? iData_B : (reg_B >> 1);
-		reg_A 	 = (iData_Reset) ? iData_A : (reg_A << 1);
+		reg_A 	 = (iData_Reset) ? iData_A : (reg_A >> 1);
 		oProduct = (iData_Reset) ? 32'b0   : wTmp_Sum ;
 	end
+
 
 endmodule
 ////////////////////////////////////////////////////////////////////
@@ -44,15 +47,15 @@ endmodule
 
 module Counter # (parameter SIZE=5)
 (
-input wire Clock, iCounterReset,
-output reg [SIZE-1:0] oCounter
+	input wire Clock, iCounterReset,
+	output reg [SIZE-1:0] oCounter
 );
 
 // Counter logic
 always @(posedge Clock )
 	begin	
 		// Synchronous Reset 
-		if (Reset)
+		if (iCounterReset)
 			oCounter = 0;
 		else
 			begin
