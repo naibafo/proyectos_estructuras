@@ -39,25 +39,24 @@ module TestBench;
 	
 	always @ (posedge Done)
 	begin
-		# 20 Ack_Flag = 1;	
+		# 50 Ack_Flag = 1;	
 	end
 	
 	always @ (negedge Done)
 	begin
-		A = $random % 10; 
-		B = $random % 10;
-		# 5  Ack_Flag = 0;	
+		# 50  Ack_Flag = 0;	
 	end
 		
 	always @ (posedge Idle)
 	begin
-		# 20 Valid_Data_Flag = 1;	
+		//A <= $unsigned($random) %10;
+		//B <= $unsigned($random) %10;
+		A<=A+1;
+		B<=B+1;
+		# 500 Valid_Data_Flag <= 1;
+		# 100 Valid_Data_Flag <= 0;	
 	end
 	
-	always @ (negedge Idle)
-	begin
-		# 5 Valid_Data_Flag = 0;	
-	end
 	
 	initial 
 	begin
@@ -70,8 +69,8 @@ module TestBench;
          Reset = 0;
          Ack_Flag = 0;
          Valid_Data_Flag = 0; 
-         A = 0; 
-		 B = 0;
+         A = 1; 
+		 B = 1;
 	  // Hacer un reset para iniciar el conteo
 	  #15 Reset = 1;
 	  #80 Reset = 0;

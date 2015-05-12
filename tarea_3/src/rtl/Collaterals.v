@@ -26,21 +26,14 @@ reg [31:0] reg_A;
 wire add_sel;
 assign add_sel = iData_B[0];
 // Define a Sum Result
-reg [31:0] wTmp_Sum;
+wire [31:0] wTmp_Sum;
 
-initial
-begin
-	wTmp_Sum=0;
-end
+assign wTmp_Sum = (add_sel) ? oProduct : (oProduct + reg_A);
 
-always @ (*)
-begin
-wTmp_Sum = (add_sel) ? oProduct : (oProduct + reg_A);
-end
 always @ (posedge Clock) 
 	begin
 		reg_B 	 = (iData_Reset) ? iData_B : (reg_B >> 1);
-		reg_A 	 = (iData_Reset) ? iData_A : (reg_A >> 1);
+		reg_A 	 = (iData_Reset) ? iData_A : (reg_A << 1);
 		oProduct = (iData_Reset) ? 32'b0   : wTmp_Sum ;
 	end
 
