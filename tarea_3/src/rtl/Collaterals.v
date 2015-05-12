@@ -37,6 +37,7 @@ always @ (posedge Clock)
 		oProduct = (iData_Reset) ? 32'b0   : wTmp_Sum ;
 	end
 
+
 endmodule
 ////////////////////////////////////////////////////////////////////
 
@@ -46,8 +47,8 @@ endmodule
 
 module Counter # (parameter SIZE=5)
 (
-input wire Clock, iCounterReset,
-output reg [SIZE-1:0] oCounter
+	input wire Clock, iCounterReset,
+	output reg [SIZE-1:0] oCounter
 );
 
 // Counter logic
