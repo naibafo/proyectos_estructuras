@@ -22,19 +22,17 @@ module Data_Path
 reg [31:0] reg_B;
 reg [31:0] reg_A;
 
-// Wheter we sum or not depends on the last bit of iDataB
-wire add_sel;
-assign add_sel = iData_B[0];
 // Define a Sum Result
-wire [31:0] wTmp_Sum;
-
-assign wTmp_Sum = (add_sel) ? oProduct : (oProduct + reg_A);
+reg [31:0] wTmp_Sum;
+wire add_sel;
+assign add_sel = reg_B[0];
 
 always @ (posedge Clock) 
 	begin
-		reg_B 	 = (iData_Reset) ? iData_B : (reg_B >> 1);
-		reg_A 	 = (iData_Reset) ? iData_A : (reg_A << 1);
+		wTmp_Sum = (!add_sel) ? oProduct : (oProduct + reg_A);
 		oProduct = (iData_Reset) ? 32'b0   : wTmp_Sum ;
+		reg_B 	 = (iData_Reset) ? iData_B : (reg_B >> 1);
+		reg_A 	 = (iData_Reset) ? iData_A : (reg_A << 1);	
 	end
 
 

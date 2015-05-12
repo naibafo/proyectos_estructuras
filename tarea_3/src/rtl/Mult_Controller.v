@@ -135,7 +135,7 @@ always @ ( * )
 			`STATE_MULT:
 				begin
 					rNextState = (wCounter == 5'd31) ? `STATE_DONE : `STATE_MULT;
-					rData_Reset = 0; 		// No reset of data
+					rData_Reset = (wCounter == 5'd0) ? 1: 0; 		// No reset of data except on first run
 					rCounterReset = 0;		// No reset of counter
 					oDone = 0;				// Not Done
 					oIdle = 0;				// Not Idle
