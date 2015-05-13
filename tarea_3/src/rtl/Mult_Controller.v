@@ -23,7 +23,7 @@ module Multiplicator
 	input	wire	iAcknoledged,		//	Input flaf that 
 	output	reg		oDone,				//	Output flag that indicates when the data is ready 
 	output	reg		oIdle,				//	Output flag that indicates when the data is ready
-	output	wire 	[31:0]	oResult
+	output	wire 	[63:0]	oResult
 );
 
 /////////////////////////////////////////////////////////////////////////
