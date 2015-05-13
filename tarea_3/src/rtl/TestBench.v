@@ -48,8 +48,6 @@ module TestBench;
 		
 	always @ (posedge Idle)
 	begin
-		//A <= $unsigned($random) %10;
-		//B <= $unsigned($random) %10;
 		A<=A+1;
 		B<=B+1;
 		# 500 Valid_Data_Flag <= 1;
