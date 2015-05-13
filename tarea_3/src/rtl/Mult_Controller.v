@@ -23,7 +23,7 @@ module Multiplicator # (parameter SIZE=32)
 	input	wire	iAcknoledged,		//	Input flaf that 
 	output	reg		oDone,				//	Output flag that indicates when the data is ready 
 	output	reg		oIdle,				//	Output flag that indicates when the data is ready
-	output	wire 	[2*SIZE:0]	oResult
+	output	wire 	[2*SIZE-1:0]	oResult
 );
 
 /////////////////////////////////////////////////////////////////////////
@@ -135,7 +135,7 @@ always @ ( * )
 			`STATE_MULT:
 				begin
 					rNextState = (wCounter == 5'd31) ? `STATE_DONE : `STATE_MULT;
-					rData_Reset = 0; 		// No reset of data
+					rData_Reset = (wCounter == 5'd0) ? 1: 0; 		// No reset of data except on first run
 					rCounterReset = 0;		// No reset of counter
 					oDone = 0;				// Not Done
 					oIdle = 0;				// Not Idle

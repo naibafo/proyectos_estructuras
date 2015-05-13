@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
+[*] Tue May 12 03:07:01 2015
+[*]
+[dumpfile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_3/src/rtl/Waves.vcd"
+[dumpfile_mtime] "Tue May 12 03:02:24 2015"
+[dumpfile_size] 34831
+[savefile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_3/src/rtl/waves.gtkw"
+[timestart] 594
+[size] 1366 720
+[pos] -1 -23
+*-4.705392 645 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TestBench.
+[treeopen] TestBench.uut.
+[sst_width] 197
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 195
+@28
+TestBench.uut.Clock
+TestBench.uut.Reset
+TestBench.Idle
+TestBench.Valid_Data_Flag
+TestBench.Done
+TestBench.Ack_Flag
+@22
+TestBench.uut.iData_A[31:0]
+TestBench.uut.iData_B[31:0]
+TestBench.uut.oResult[31:0]
+@24
+TestBench.uut.DataPath.reg_A[31:0]
+TestBench.uut.DataPath.reg_B[31:0]
+@22
+TestBench.uut.DataPath.wTmp_Sum[31:0]
+@28
+TestBench.uut.DataPath.iData_Reset
+[pattern_trace] 1
+[pattern_trace] 0
