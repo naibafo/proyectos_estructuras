@@ -13,17 +13,17 @@
 //// Module: Multiplicator                                           ////
 /////////////////////////////////////////////////////////////////////////
 
-module Multiplicator
+module Multiplicator # (parameter SIZE=32)
 (
-	input	wire	[31:0]	iData_A, 	// 	Input data A  
-	input	wire	[31:0]	iData_B,	// 	Input data B
+	input	wire	[SIZE-1:0]	iData_A, 	// 	Input data A  
+	input	wire	[SIZE-1:0]	iData_B,	// 	Input data B
 	input 	wire	Clock,
 	input 	wire	Reset,
 	input 	wire 	iValid_Data,		// 	Input flag that 
 	input	wire	iAcknoledged,		//	Input flaf that 
 	output	reg		oDone,				//	Output flag that indicates when the data is ready 
 	output	reg		oIdle,				//	Output flag that indicates when the data is ready
-	output	wire 	[31:0]	oResult
+	output	wire 	[2*SIZE:0]	oResult
 );
 
 /////////////////////////////////////////////////////////////////////////
