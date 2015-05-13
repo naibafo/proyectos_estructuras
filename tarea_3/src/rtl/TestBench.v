@@ -1,21 +1,6 @@
 `include "Mult_Controller.v"
 
 module TestBench;
-
-	//Unit Under Test (Multiplicador) instance
-	
-	Multiplicator uut
-	(
-		.iData_A(A),
-		.iData_B(B),	
-		.Clock(Clock),
-		.Reset(Reset),
-		.iValid_Data(Valid_Data_Flag),	
-		.iAcknoledged(Ack_Flag),		 
-		.oDone(Done),				
-		.oIdle(Idle),				
-		.oResult(Result)
-	);
 	// Signals definition
 	reg Clock;
 	reg Reset;
@@ -33,6 +18,22 @@ module TestBench;
 		else
 		  #5 Clock = 1;
 	  end
+	
+		//Unit Under Test (Multiplicador) instance
+	
+	Multiplicator uut
+	(
+		.iData_A(A),
+		.iData_B(B),	
+		.Clock(Clock),
+		.Reset(Reset),
+		.iValid_Data(Valid_Data_Flag),	
+		.iAcknoledged(Ack_Flag),		 
+		.oDone(Done),				
+		.oIdle(Idle),				
+		.oResult(Result)
+	);
+	
 	
 	always @ (posedge Done)
 	begin
