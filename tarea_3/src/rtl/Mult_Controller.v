@@ -42,7 +42,7 @@ reg 		rData_Reset;
 wire [COUNTER_SIZE-1:0] wCounter;
 reg	  rCounterReset;
 
-Counter Counter_32b
+Counter #(COUNTER_SIZE) Counter_32b
 (
 	.Clock(Clock),
 	.iCounterReset(rCounterReset),
