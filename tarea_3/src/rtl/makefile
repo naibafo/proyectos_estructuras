@@ -9,3 +9,6 @@ testbench_verificator:
 	iverilog automatic_verificator.v -o simulate_stuff.x
 	./simulate_stuff.x
 	gtkwave av_Waves.vcd 2>1&
+
+clean:	
+	rm *.x 1

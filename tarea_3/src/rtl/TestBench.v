@@ -8,7 +8,7 @@ module TestBench;
 	reg [31:0] B;
 	reg Valid_Data_Flag, Ack_Flag;
 	wire Done, Idle;
-	wire [64:0] Result;
+	wire [63:0] Result;
 
 	//Clock definition 
 	always
