@@ -13,17 +13,17 @@
 //// Module: Multiplicator                                           ////
 /////////////////////////////////////////////////////////////////////////
 
-module Multiplicator
+module Multiplicator # (parameter DATA_SIZE=32, parameter COUNTER_SIZE=5)
 (
-	input	wire	[31:0]	iData_A, 	// 	Input data A  
-	input	wire	[31:0]	iData_B,	// 	Input data B
+	input	wire	[DATA_SIZE-1:0]	iData_A, 	// 	Input data A  
+	input	wire	[DATA_SIZE-1:0]	iData_B,	// 	Input data B
 	input 	wire	Clock,
 	input 	wire	Reset,
 	input 	wire 	iValid_Data,		// 	Input flag that 
 	input	wire	iAcknoledged,		//	Input flaf that 
 	output	reg		oDone,				//	Output flag that indicates when the data is ready 
 	output	reg		oIdle,				//	Output flag that indicates when the data is ready
-	output	wire 	[63:0]	oResult
+	output	wire 	[2*DATA_SIZE-1:0]	oResult
 );
 
 /////////////////////////////////////////////////////////////////////////
@@ -37,7 +37,7 @@ reg 		rData_Reset;
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 // Counter Instance                                                    //
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
-wire [4:0] wCounter;
+wire [COUNTER_SIZE-1:0] wCounter;
 reg	  rCounterReset;
 
 Counter Counter_32b
@@ -53,7 +53,7 @@ Counter Counter_32b
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 // Data_Path Instance                                                  //
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
-Data_Path DataPath
+Data_Path # (DATA_SIZE) DataPath 
 (
 	.iData_A(iData_A), 			// Input data A  
 	.iData_B(iData_B),			// Input data B
