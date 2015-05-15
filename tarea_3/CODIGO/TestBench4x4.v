@@ -4,13 +4,13 @@ module TestBench;
 	// Signals definition
 	reg Clock;
 	reg Reset;
-	reg [31:0] A;
-	reg [31:0] B;
-	reg [31:0] C;
-	reg [31:0] D;
+	reg [15:0] A;
+	reg [15:0] B;
+	reg [15:0] C;
+	reg [15:0] D;
 	reg Valid_Data_Flag, Ack_Flag;
 	wire Done, Idle;
-	wire [127:0] Result;
+	wire [63:0] Result;
 
 	//Clock definition 
 	always
@@ -23,7 +23,7 @@ module TestBench;
 	
 	//Unit Under Test (Multiplicador) instance
 	
-	Four_Multiplicador uut
+	Four_Multiplicador #(16,5) uut 
 	(
 		.iData_A(A),
 		.iData_B(B),
