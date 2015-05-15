@@ -22,6 +22,7 @@ module Four_Multiplicador # (parameter SIZE=32, parameter COUNTER_SIZE=5)
 	wire [2*SIZE-1:0] Result1 ;
 	wire [2*SIZE-1:0] Result2;
 	
+	assign oIdle = Idle1 & Idle2 & Idle3; 
 	assign Enable = Done1 & Done2;
 
 	Multiplicator  # (SIZE, COUNTER_SIZE) mult1 
@@ -60,7 +61,7 @@ module Four_Multiplicador # (parameter SIZE=32, parameter COUNTER_SIZE=5)
 		.iValid_Data(Enable),	
 		.iAcknoledged(iAcknoledged),		 
 		.oDone(oDone),				
-		.oIdle(oIdle),				
+		.oIdle(Idle3),				
 		.oResult(oResult)
 	);	
 
