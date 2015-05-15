@@ -14,6 +14,10 @@ module 4x4Multiplicador (
 	output	wire 	[31:0]	oResult
 );
 
+	reg Enable;
+	
+	assign Enable = Done1 & Done2;
+
 	Multiplicator mult1
 	(
 		.iData_A(iData_A),
@@ -30,16 +34,29 @@ module 4x4Multiplicador (
 	
 		Multiplicator mult2
 	(
-		.iData_A(iData_A),
-		.iData_B(iData_B),	
+		.iData_A(iData_C),
+		.iData_B(iData_D),	
 		.Clock(Clock),
 		.Reset(Reset),
 		.iValid_Data(iValid_Data),	
 		.iAcknoledged(iAcknoledged),		 
-		.oDone(Done1),				
-		.oIdle(Idle1),				
-		.oResult(Result1)
+		.oDone(Done2),				
+		.oIdle(Idle2),				
+		.oResult(Result2)
 	);
+	
+		Multiplicator mult3
+	(
+		.iData_A(Result1),
+		.iData_B(Result2),	
+		.Clock(Clock),
+		.Reset(Reset),
+		.iValid_Data(Enable),	
+		.iAcknoledged(iAcknoledged),		 
+		.oDone(oDone),				
+		.oIdle(oIdle),				
+		.oResult(oResult)
+	);	
 
 
 
