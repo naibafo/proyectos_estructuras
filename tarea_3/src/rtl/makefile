@@ -1,14 +1,14 @@
-all:
+all: mult
 
-testbench:
+mult:
 	iverilog TestBench.v -o simulate.x
 	./simulate.x
-	gtkwave Waves.vcd 2>1&
+	gtkwave Waves.vcd &
 
-testbench_verificator:
+verifier:
 	iverilog automatic_verificator.v -o simulate_stuff.x
 	./simulate_stuff.x
-	gtkwave av_Waves.vcd 2>1&
+	gtkwave av_Waves.vcd  &
 
 clean:	
 	rm *.x 1
