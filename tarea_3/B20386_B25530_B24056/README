@@ -24,3 +24,5 @@ En caso de querer correr las pruebas con el verficador, ejecute:
 	$ make verifier
 	
 En caso de que quiera correr 
+
+Dentro de la carpeta images podrá encontrar las imagenes de las simulaciones.
