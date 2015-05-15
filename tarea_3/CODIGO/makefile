@@ -15,5 +15,10 @@ mult4:
 	./Simulation4x4.x
 	gtkwave 4x4Waves.vcd &
 
+mult3:
+	iverilog testbench3input.v -o 3input_simulation.x
+	./3input_simulation.x
+	gtkwave 3inpts_Waves.vcd &
+
 clean:	
-	rm *.x 1
+	rm *.x 
