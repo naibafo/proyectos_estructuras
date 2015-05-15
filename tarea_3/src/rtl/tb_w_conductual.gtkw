@@ -1,26 +1,27 @@
 [*]
 [*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
-[*] Wed May 13 04:31:00 2015
+[*] Fri May 15 01:24:45 2015
 [*]
 [dumpfile] "/home/r2/Documentos/EstructurasII/Tarea3/proyectos_estructuras/tarea_3/src/rtl/av_Waves.vcd"
-[dumpfile_mtime] "Wed May 13 04:29:22 2015"
-[dumpfile_size] 20508
+[dumpfile_mtime] "Fri May 15 01:24:29 2015"
+[dumpfile_size] 20437
 [savefile] "/home/r2/Documentos/EstructurasII/Tarea3/proyectos_estructuras/tarea_3/src/rtl/tb_w_conductual.gtkw"
-[timestart] 0
+[timestart] 2309
 [size] 1366 718
 [pos] -1 -25
-*-10.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] automatic_verificator_tb.
 [sst_width] 202
 [signals_width] 158
 [sst_expanded] 1
-[sst_vpaned_height] 194
-@25
-automatic_verificator_tb.A[31:0]
+[sst_vpaned_height] 314
 @24
+automatic_verificator_tb.A[31:0]
 automatic_verificator_tb.B[31:0]
 automatic_verificator_tb.Result_dut[63:0]
 automatic_verificator_tb.Result_nut[63:0]
 @28
-automatic_verificator_tb.is_all_good
+automatic_verificator_tb.verif
+automatic_verificator_tb.Clock
 [pattern_trace] 1
 [pattern_trace] 0

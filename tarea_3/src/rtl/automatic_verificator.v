@@ -10,7 +10,7 @@ module automatic_verificator_tb;
 	wire Done, Idle;
 	wire [63:0] Result_dut;
 	wire [63:0] Result_nut;
-	wire is_all_good;
+	wire verif;
 	
 	//Clock
 	always
@@ -53,7 +53,7 @@ module automatic_verificator_tb;
 		.iR_nut(Result_nut),
 		.Clock(Clock),
 		.Reset(Reset),
-		.good(is_all_good)
+		.good(verif)
 	);
 	
 	always @ (posedge Done)
@@ -69,8 +69,10 @@ module automatic_verificator_tb;
 		
 	always @ (posedge Idle)
 	begin
-		A <= $unsigned($random) %10;
-		B <= $unsigned($random) %10;
+		A <= $unsigned($random) %100;
+		B <= $unsigned($random) %100;
+		//~ A<=A+1;
+		//~ B<=B+1;
 		# 500 Valid_Data_Flag <= 1;
 		# 100 Valid_Data_Flag <= 0;	
 	end
@@ -92,7 +94,7 @@ module automatic_verificator_tb;
 	  #15 Reset = 1;
 	  #80 Reset = 0;
         
-	  #5000 $finish;                                                                                            
+	  #500000 $finish;                                                                                            
 
 	end
 	
