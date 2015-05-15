@@ -1,8 +1,10 @@
 /*
 	Collaterals.v
-		Defines two modules:
+		Defines following modules:
 			Data_Path
 			Counter
+			Verificator
+			Conductual_Multiplier
 */
 
 ////////////////////////////////////////////////////////////////////
