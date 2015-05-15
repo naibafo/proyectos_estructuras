@@ -1,0 +1,29 @@
+[*]
+[*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
+[*] Fri May 15 01:38:09 2015
+[*]
+[dumpfile] "/home/r2/Documentos/EstructurasII/Tarea3/proyectos_estructuras/tarea_3/src/rtl/Waves.vcd"
+[dumpfile_mtime] "Fri May 15 01:36:26 2015"
+[dumpfile_size] 2322844
+[savefile] "/home/r2/Documentos/EstructurasII/Tarea3/proyectos_estructuras/tarea_3/src/rtl/regular_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-10.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 202
+[signals_width] 126
+[sst_expanded] 1
+[sst_vpaned_height] 152
+@28
+TestBench.Reset
+TestBench.Clock
+TestBench.Idle
+TestBench.Ack_Flag
+@24
+TestBench.A[31:0]
+TestBench.B[31:0]
+TestBench.Result[63:0]
+@28
+TestBench.Done
+[pattern_trace] 1
+[pattern_trace] 0

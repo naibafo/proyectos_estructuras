@@ -1,38 +1,40 @@
 /*
 	Collaterals.v
-		Defines two modules:
+		Defines following modules:
 			Data_Path
 			Counter
+			Verificator
+			Conductual_Multiplier
 */
 
 ////////////////////////////////////////////////////////////////////
 //// Module: Data_Path
 ////////////////////////////////////////////////////////////////////
 
-module Data_Path
+module Data_Path  # (parameter SIZE=32) 
 (
-	input	wire	[31:0]	iData_A, 		// Input data A  
-	input	wire	[31:0]	iData_B,		// Input data B
-	input 	wire	        iData_Reset,	// 
-	input	wire 			Clock,			// 
-	output	reg		[63:0]	oProduct		// 
+	input	wire	[SIZE-1:0]		iData_A, 		// Input data A  
+	input	wire	[SIZE-1:0]		iData_B,		// Input data B
+	input 	wire	        		iData_Reset,	// 
+	input	wire 					Clock,			// 
+	output	reg		[2*SIZE-1:0]	oProduct		// 
 );
 
 // Registers Definition
-reg [31:0] reg_B;
-reg [63:0] reg_A;
+reg [SIZE-1:0] reg_B;
+reg [2*SIZE-1:0] reg_A;
 
 // Define a Sum Result
-reg [63:0] wTmp_Sum;
+reg [2*SIZE-1:0] wTmp_Sum;
 wire add_sel;
 assign add_sel = reg_B[0];
 
-always @ (posedge Clock) 
+always @ (posedge Clock)
 	begin
 		wTmp_Sum = (!add_sel) ? oProduct : (oProduct + reg_A);
-		oProduct = (iData_Reset) ? 64'b0   : wTmp_Sum ;
+		oProduct = (iData_Reset) ? {2*SIZE{1'b0}} : wTmp_Sum ;
 		reg_B 	 = (iData_Reset) ? iData_B : (reg_B >> 1);
-		reg_A 	 = (iData_Reset) ? {32'b0,iData_A} : (reg_A << 1);	
+		reg_A 	 = (iData_Reset) ? {{SIZE{1'b0}},iData_A} : (reg_A << 1);	
 	end
 
 

@@ -1,16 +1,18 @@
 `include "Mult_Controller.v"
 
-module TestBench;
-	// Signals definition
+module automatic_verificator_tb;
+	//Signals 
 	reg Clock;
 	reg Reset;
 	reg [31:0] A;
 	reg [31:0] B;
 	reg Valid_Data_Flag, Ack_Flag;
 	wire Done, Idle;
-	wire [64:0] Result;
-
-	//Clock definition 
+	wire [63:0] Result_dut;
+	wire [63:0] Result_nut;
+	wire verif;
+	
+	//Clock
 	always
 	  begin
 	    if (Clock)
@@ -19,9 +21,7 @@ module TestBench;
 		  #5 Clock = 1;
 	  end
 	
-		//Unit Under Test (Multiplicador) instance
-	
-	Multiplicator uut
+	Multiplicator dut
 	(
 		.iData_A(A),
 		.iData_B(B),	
@@ -31,9 +31,30 @@ module TestBench;
 		.iAcknoledged(Ack_Flag),		 
 		.oDone(Done),				
 		.oIdle(Idle),				
-		.oResult(Result)
+		.oResult(Result_dut)
 	);
 	
+	Conductual_Multiplicator nut
+	(
+		.iData_A(A),
+		.iData_B(B),	
+		.Clock(Clock),
+		.Reset(Reset),
+		.iValid_Data(Valid_Data_Flag),	
+		.iAcknoledged(Ack_Flag),		 
+		.oDone(Done),				
+		.oIdle(Idle),				
+		.oResult(Result_nut)
+	);
+	
+	verificator dut_nut_comparator
+	(
+		.iR_dut(Result_dut),
+		.iR_nut(Result_nut),
+		.Clock(Clock),
+		.Reset(Reset),
+		.good(verif)
+	);
 	
 	always @ (posedge Done)
 	begin
@@ -48,8 +69,10 @@ module TestBench;
 		
 	always @ (posedge Idle)
 	begin
-		A<=A+1;
-		B<=B+1;
+		A <= $unsigned($random) %100;
+		B <= $unsigned($random) %100;
+		//~ A<=A+1;
+		//~ B<=B+1;
 		# 500 Valid_Data_Flag <= 1;
 		# 100 Valid_Data_Flag <= 0;	
 	end
@@ -57,7 +80,7 @@ module TestBench;
 	initial 
 	begin
 	  // GTKwave
-	  $dumpfile("Waves.vcd");
+	  $dumpfile("av_Waves.vcd");
 	  $dumpvars;
 	  
 	  // Inicializar señales primarias
@@ -71,9 +94,9 @@ module TestBench;
 	  #15 Reset = 1;
 	  #80 Reset = 0;
         
-	  #5000 $finish;                                                                                            
+	  #500000 $finish;                                                                                            
 
 	end
 	
-	
 endmodule
+	

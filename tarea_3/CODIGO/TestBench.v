@@ -1,18 +1,16 @@
 `include "Mult_Controller.v"
 
-module automatic_verificator_tb;
-	//Signals 
+module TestBench;
+	// Signals definition
 	reg Clock;
 	reg Reset;
 	reg [31:0] A;
 	reg [31:0] B;
 	reg Valid_Data_Flag, Ack_Flag;
 	wire Done, Idle;
-	wire [63:0] Result_dut;
-	wire [63:0] Result_nut;
-	wire is_all_good;
-	
-	//Clock
+	wire [63:0] Result;
+
+	//Clock definition 
 	always
 	  begin
 	    if (Clock)
@@ -21,7 +19,9 @@ module automatic_verificator_tb;
 		  #5 Clock = 1;
 	  end
 	
-	Multiplicator dut
+	//Unit Under Test (Multiplicador) instance
+	
+	Multiplicator uut
 	(
 		.iData_A(A),
 		.iData_B(B),	
@@ -31,30 +31,9 @@ module automatic_verificator_tb;
 		.iAcknoledged(Ack_Flag),		 
 		.oDone(Done),				
 		.oIdle(Idle),				
-		.oResult(Result_dut)
+		.oResult(Result)
 	);
 	
-	Conductual_Multiplicator nut
-	(
-		.iData_A(A),
-		.iData_B(B),	
-		.Clock(Clock),
-		.Reset(Reset),
-		.iValid_Data(Valid_Data_Flag),	
-		.iAcknoledged(Ack_Flag),		 
-		.oDone(Done),				
-		.oIdle(Idle),				
-		.oResult(Result_nut)
-	);
-	
-	verificator dut_nut_comparator
-	(
-		.iR_dut(Result_dut),
-		.iR_nut(Result_nut),
-		.Clock(Clock),
-		.Reset(Reset),
-		.good(is_all_good)
-	);
 	
 	always @ (posedge Done)
 	begin
@@ -69,8 +48,10 @@ module automatic_verificator_tb;
 		
 	always @ (posedge Idle)
 	begin
-		A <= $unsigned($random) %10;
-		B <= $unsigned($random) %10;
+		//~ A <= $unsigned($random) %100;
+		//~ B <= $unsigned($random) %100;
+		A<=A+1;
+		B<=B+1;
 		# 500 Valid_Data_Flag <= 1;
 		# 100 Valid_Data_Flag <= 0;	
 	end
@@ -78,7 +59,7 @@ module automatic_verificator_tb;
 	initial 
 	begin
 	  // GTKwave
-	  $dumpfile("av_Waves.vcd");
+	  $dumpfile("Waves.vcd");
 	  $dumpvars;
 	  
 	  // Inicializar señales primarias
@@ -92,9 +73,9 @@ module automatic_verificator_tb;
 	  #15 Reset = 1;
 	  #80 Reset = 0;
         
-	  #5000 $finish;                                                                                            
+	  #500000 $finish;                                                                                            
 
 	end
 	
-endmodule
 	
+endmodule

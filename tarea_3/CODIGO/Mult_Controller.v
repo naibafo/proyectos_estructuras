@@ -13,7 +13,9 @@
 //// Module: Multiplicator                                           ////
 /////////////////////////////////////////////////////////////////////////
 
-module Multiplicator # (parameter SIZE=32)
+
+
+module Multiplicator # (parameter SIZE=32, parameter COUNTER_SIZE=5)
 (
 	input	wire	[SIZE-1:0]	iData_A, 	// 	Input data A  
 	input	wire	[SIZE-1:0]	iData_B,	// 	Input data B
@@ -37,10 +39,10 @@ reg 		rData_Reset;
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 // Counter Instance                                                    //
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
-wire [4:0] wCounter;
+wire [COUNTER_SIZE-1:0] wCounter;
 reg	  rCounterReset;
 
-Counter Counter_32b
+Counter #(COUNTER_SIZE) Counter_32b
 (
 	.Clock(Clock),
 	.iCounterReset(rCounterReset),
@@ -53,7 +55,7 @@ Counter Counter_32b
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
 // Data_Path Instance                                                  //
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = //
-Data_Path DataPath
+Data_Path # (SIZE) DataPath 
 (
 	.iData_A(iData_A), 			// Input data A  
 	.iData_B(iData_B),			// Input data B
