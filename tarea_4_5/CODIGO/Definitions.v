@@ -1,2 +1,6 @@
-`define	NOP		6'b0
-`define	
+`define	NOP		6'h00
+
+
+////////////////////////////////////////////////////////////////////////
+///	Branching Instructions
+`define	BAEQ	6'h1A

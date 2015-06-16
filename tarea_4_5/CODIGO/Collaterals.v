@@ -9,7 +9,7 @@ input wire Clock, Reset,
 input wire [SIZE-1:0] Initial,
 input wire Enable,
 output reg [SIZE-1:0] Q
-);
+); 
 
 
   always @(posedge Clock )
