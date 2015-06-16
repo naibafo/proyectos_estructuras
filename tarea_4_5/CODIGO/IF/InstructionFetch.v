@@ -51,8 +51,8 @@ wire [15:0] Instruction;
 		- First 6 bits = Operation
 		- Last 10 bits = Additional Data
 */
-assign oOperation_IF = [15:10] Instruction;
-assign oData_IF = [9:0] Instruction; 
+assign {oOperation_IF, oData_IF } =  Instruction;
+
 
 // --------------------- //
 //      ROM Memory       //
