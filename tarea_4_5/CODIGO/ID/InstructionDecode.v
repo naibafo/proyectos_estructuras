@@ -21,7 +21,7 @@ module InstructionDecoder
 	input wire	[7:0]	iRegB,				//	Reg B
 	output reg	[5:0]	oOperation_ID,		//	Output Operation
 	output reg	[5:0]	oData_ID,			//	Output Data
-	output reg			oBrachTaken,		//	Flag that indicates if we need to branch
+	output reg			oBranchTaken			//	Flag that indicates if we need to branch
 );
 ////////////////////////////////////////////////////////////////////////
 wire Za, Zb;
@@ -75,4 +75,3 @@ always @ (posedge Clock)
 endmodule
 
 
-endmodule
