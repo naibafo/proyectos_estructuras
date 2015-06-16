@@ -16,12 +16,12 @@ module InstructionDecoder
 	input wire	 		Clock,				// 	Input Clock
 	input wire 		Reset,				// 	Reset signal
 	input wire	[5:0]	iOperation_IF,		//	Input Operation from the IF		
-	input wire	[9:0]	iData_IF,			//
-	input wire	[7:0]	iRegA,				//	
-	input wire	[7:0]	iRegB,				//	
-	output reg	[5:0]	oOperation_ID,		//
-	output reg	[5:0]	oData_ID,			//
-	output reg			oBrachTaken,		//	
+	input wire	[9:0]	iData_IF,			//	Input Data from the IF
+	input wire	[7:0]	iRegA,				//	Reg A
+	input wire	[7:0]	iRegB,				//	Reg B
+	output reg	[5:0]	oOperation_ID,		//	Output Operation
+	output reg	[5:0]	oData_ID,			//	Output Data
+	output reg			oBrachTaken,		//	Flag that indicates if we need to branch
 );
 ////////////////////////////////////////////////////////////////////////
 wire Za, Zb;
