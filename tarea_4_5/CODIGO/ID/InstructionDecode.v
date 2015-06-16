@@ -20,7 +20,7 @@ module InstructionDecoder
 	input wire	[7:0]	iRegA,				//	Reg A
 	input wire	[7:0]	iRegB,				//	Reg B
 	output reg	[5:0]	oOperation_ID,		//	Output Operation
-	output reg	[5:0]	oData_ID,			//	Output Data
+	output reg	[9:0]	oData_ID,			//	Output Data
 	output reg			oBranchTaken			//	Flag that indicates if we need to branch
 );
 ////////////////////////////////////////////////////////////////////////
@@ -39,7 +39,7 @@ assign Zb = (iRegB == 8'b0);	// Zero flag for reg B
 		This way a Branch will introduce a NOP operation bubble.
 */
 wire [5:0] iOperation;
-assign iOperation = (Reset) ? iOperation_IF :  `NOP;
+assign iOperation = (Reset) ?  `NOP: iOperation_IF;
 
 ////////////////////////////////////////////////////////////////////////
 always @ (posedge Clock)
@@ -53,7 +53,7 @@ always @ (posedge Clock)
 		`BAEQ:
 			begin
 				oBranchTaken 	= 	Za;			// Take a branch is A is Zero
-				oOperation_ID 	= 	`NOP;		// Make other steps beleive is a NOP
+				oOperation_ID 	= 	iOperation;		// Make other steps beleive is a NOP
 				oData_ID 		=	iData_IF;	// The jump information is on iData_IF. Keep it the same
 			end
 		////////////////////////////////////////////////////////////////
