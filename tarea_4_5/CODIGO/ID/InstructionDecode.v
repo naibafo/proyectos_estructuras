@@ -19,8 +19,8 @@ module InstructionDecoder
 	input wire	[9:0]	iData_IF,			//	Input Data from the IF
 	input wire	[7:0]	iRegA,				//	Reg A
 	input wire	[7:0]	iRegB,				//	Reg B
-	output reg	[5:0]	oOperation_ID,		//	Output Operation
-	output reg	[9:0]	oData_ID,			//	Output Data
+	output wire [5:0]	oOperation_ID,		//	Output Operation
+	output wire [9:0]	oData_ID,			//	Output Data
 	output reg			oBranchTaken			//	Flag that indicates if we need to branch
 );
 ////////////////////////////////////////////////////////////////////////
@@ -41,6 +41,31 @@ assign Zb = (iRegB == 8'b0);	// Zero flag for reg B
 wire [5:0] iOperation;
 assign iOperation = (Reset) ?  `NOP: iOperation_IF;
 
+//
+// Operation
+//
+
+FFD # ( 10 ) Operation 
+(
+	.Clock	(Clock),
+	.Reset	(Reset),
+	.Enable	(1'b1),
+	.D		(iOperation),
+	.Q		(oOperation_ID)
+);
+
+//
+// Additional Data
+//
+
+FFD # ( 10 ) Additional_Data 
+(
+	.Clock	(Clock),
+	.Reset	(Reset),
+	.Enable	(1'b1),
+	.D		(iData_IF),
+	.Q		(oData_ID)
+);
 ////////////////////////////////////////////////////////////////////////
 always @ (posedge Clock)
 	////////////////////////////////////////////////////////////////////
@@ -50,24 +75,22 @@ always @ (posedge Clock)
 			BAEQ:
 					Branch is reg A is Zero.
 		*/
-		`BAEQ:
-			begin
-				oBranchTaken 	= 	Za;			// Take a branch is A is Zero
-				oOperation_ID 	= 	iOperation;		// Make other steps beleive is a NOP
-				oData_ID 		=	iData_IF;	// The jump information is on iData_IF. Keep it the same
-			end
+		`BAEQ:	oBranchTaken 	= 	Za;			// Take a branch is A is Zero
+		/*
+			BANE:
+					Branch is reg A is non Zero.
+		*/
+		`BANE:	oBranchTaken 	= 	~Za;		// Take a branch is A is Zero
+		
 		////////////////////////////////////////////////////////////////
 		/*
 			When its not a branch instruction:
-				- Output the same operation
 				- Indicate that there is no branch to take
 				- Output the data we got
 		*/
 		default:
 			begin
-				oOperation_ID 	= 	iOperation;		// 
 				oBranchTaken 	=	1'b0;			// 
-				oData_ID		= 	iData_IF;		//
 			end	
 	////////////////////////////////////////////////////////////////////
 	endcase	

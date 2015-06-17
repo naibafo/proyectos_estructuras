@@ -67,8 +67,7 @@ module TestBench;
 		#40 
 		regA = 8'b0;
 		
-		#40
-		Operation = `LDA;
+		
 		
 		#150
 		$finish;
