@@ -1,0 +1,26 @@
+REAME
+
+El código consiste en varios archivos:
+
+	-	Collaterals.v: Engloba todas los módulos auxiliares necesarios. Aquí encontrará los modulos para: 
+			* Data_Path: 	Es el modulo junto con la maquina de estados que hace posible la multiplicacion.
+			* Counter: Contador parametrizable.
+			* Conductual_Multiplier: Es un modulo para verificar la multiplicación.
+	
+	- 	Mult_Controller.v: Es el módulo multiplicador. Se programó de manera que sea parametrizable el tamaño de los operandos.
+	
+	-	Testbench.v: Pruebas para el multiplicador
+	
+	- 	automatic_verificator.v: Pruebas de verficación con el multiplicador conductual para comparar.
+	
+Para correr el programa ejecute estando en la carpeta de código:
+
+	$ make
+
+Esto compilará y ejecutará las pruebas del multiplicador para dos entradas.
+
+En caso de querer correr las pruebas con el verficador, ejecute:
+
+	$ make verifier
+	
+En caso de que quiera correr 
