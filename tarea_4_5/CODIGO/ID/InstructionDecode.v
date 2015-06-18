@@ -18,15 +18,14 @@ module InstructionDecoder
 	input wire	[5:0]	iOperation_IF,		//	Input Operation from the IF		
 	input wire	[9:0]	iData_IF,			//	Input Data from the IF
 	input wire	[7:0]	iRegA,				//	Reg A
+	input wire 		iCarryA,			//	Carry for reg A
 	input wire	[7:0]	iRegB,				//	Reg B
+	input wire 		iCarryB,			//	Carry for reg B
 	output wire [5:0]	oOperation_ID,		//	Output Operation
 	output wire [9:0]	oData_ID,			//	Output Data
-	output reg			oBranchTaken			//	Flag that indicates if we need to branch
+	output reg			oBranchTaken		//	Flag that indicates if we need to branch
 );
 ////////////////////////////////////////////////////////////////////////
-wire Za, Zb;
-assign Za = (iRegA == 8'b0);	// Zero flag for reg A
-assign Zb = (iRegB == 8'b0);	// Zero flag for reg B
 /*
 	Reset logic: 
 		If we have a reset, the input OP is read as a NOP. Usefull when 
@@ -45,7 +44,7 @@ assign iOperation = (Reset) ?  `NOP: iOperation_IF;
 // Operation
 //
 
-FFD # ( 10 ) Operation 
+FFD # ( 6 ) Operation 
 (
 	.Clock	(Clock),
 	.Reset	(Reset),
@@ -66,22 +65,97 @@ FFD # ( 10 ) Additional_Data
 	.D		(iData_IF),
 	.Q		(oData_ID)
 );
+
+////////////////////////////////////////////////////////////////////////
+//
+//	FLAGS
+//
+////////////////////////////////////////////////////////////////////////
+wire Za, Zb;
+assign Za = (iRegA == 8'b0);	// Zero flag for reg A
+assign Zb = (iRegB == 8'b0);	// Zero flag for reg B
+
+wire Na, Nb;
+assign Na = iRegA[7];	// Sign flag for reg A
+assign Nb = iRegB[7];	// Sign flag for reg B
+////////////////////////////////////////////////////////////////////////
+
+
 ////////////////////////////////////////////////////////////////////////
 always @ (posedge Clock)
 	////////////////////////////////////////////////////////////////////
 	case (iOperation)
 	////////////////////////////////////////////////////////////////////
+		
+		// --------------------------------
+		//	Branching Operations for reg A
+		// --------------------------------
+		
 		/*
 			BAEQ:
-					Branch is reg A is Zero.
+					Branch if reg A is Zero.
 		*/
-		`BAEQ:	oBranchTaken 	= 	Za;			// Take a branch is A is Zero
+		`BAEQ:	oBranchTaken 	= 	Za;			// Take a branch if A is Zero
 		/*
 			BANE:
-					Branch is reg A is non Zero.
+					Branch if reg A is non Zero.
 		*/
-		`BANE:	oBranchTaken 	= 	~Za;		// Take a branch is A is Zero
+		`BANE:	oBranchTaken 	= 	~Za;		// Take a branch if A is non Zero
+		/*
+			BACS:
+					Branch if CarryA is set.
+		*/
+		`BACS:	oBranchTaken 	= 	iCarryA;		// Take a branch if CarryA is set
+		/*
+			BACC:
+					Branch if CarryA is clear.
+		*/
+		`BACC:	oBranchTaken 	= 	~iCarryA;	// Take a branch if CarryA is clear
+		/*
+			BAMI:
+					Branch if reg A is positive.
+		*/
+		`BAMI:	oBranchTaken 	= 	Na;	// Take a branch if reg A is positive.
+		/*
+			BAPL:
+					Branch if reg A is positive.
+		*/
+		`BAPL:	oBranchTaken 	= 	~Na;	// Take a branch if reg A is positive.
 		
+		// --------------------------------
+		//	Branching Operations for reg B
+		// --------------------------------
+		
+		/*
+			BBEQ:
+					Branch if reg B is Zero.
+		*/
+		`BBEQ:	oBranchTaken 	= 	Zb;			// Take a branch if B is Zero
+		/*
+			BBNE:
+					Branch if reg B is non Zero.
+		*/
+		`BBNE:	oBranchTaken 	= 	~Zb;		// Take a branch if B is non Zero
+		/*
+			BBCS:
+					Branch if CarryB is set.
+		*/
+		`BBCS:	oBranchTaken 	= 	iCarryB;		// Take a branch if CarryB is set
+		/*
+			BBCC:
+					Branch if CarryB is clear.
+		*/
+		`BBCC:	oBranchTaken 	= 	~iCarryB;	// Take a branch if CarryB is clear
+		/*
+			BBMI:
+					Branch if reg B is positive.
+		*/
+		`BBMI:	oBranchTaken 	= 	Nb;	// Take a branch if reg B is positive.
+		/*
+			BBPL:
+					Branch if reg B is positive.
+		*/
+		`BBPL:	oBranchTaken 	= 	~Nb;	// Take a branch if reg B is positive.
 		////////////////////////////////////////////////////////////////
 		/*
 			When its not a branch instruction:
@@ -90,7 +164,7 @@ always @ (posedge Clock)
 		*/
 		default:
 			begin
-				oBranchTaken 	=	1'b0;			// 
+				oBranchTaken 	=	1'b0;			// No branch needed
 			end	
 	////////////////////////////////////////////////////////////////////
 	endcase	

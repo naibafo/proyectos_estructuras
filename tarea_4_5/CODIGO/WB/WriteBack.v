@@ -6,6 +6,7 @@
 			-	Maganages the logic to modify the general purpose 
 				registers, and gives given registers to the rest of the 
 				modules.
+			-	Receives an 8 bit value, a carry an wich register to modify
 */
 module WriteBack
 (
@@ -13,7 +14,10 @@ module WriteBack
 	input wire 		Reset,		// 	Reset signal
 	output wire [7:0]	oRegA,		//	Reg A
 	output wire [7:0]	oRegB,		//	Reg B
+	output wire 		oCarryA,	//	Carry for Reg A
+	output wire 		oCarryB,	//	Carry for Reg B
 	input wire  [7:0]	iData,		//	Input Data
+	input wire			iCarry,		// 	Input Carry
 	input wire 		iModA,		// 	Flag to modificate Reg A
 	input wire 		iModB		// 	Flag to modificate Reg B
 );
@@ -22,26 +26,26 @@ module WriteBack
 //           A           //
 // --------------------- //
 
-FFD # ( 8 ) A_Reg 
+FFD # ( 9 ) A_Reg 
 (
 	.Clock	(Clock),
 	.Reset	(Reset),
 	.Enable	(iModA),
-	.D		(iData),
-	.Q		(oRegA)
+	.D		({iCarry,iData}),
+	.Q		({oCarryA,oRegA})
 );
 
 // --------------------- //
 //           B           //
 // --------------------- //
 
-FFD # ( 8 ) B_Reg 
+FFD # ( 9 ) B_Reg 
 (
 	.Clock	(Clock),
 	.Reset	(Reset),
 	.Enable	(iModB),
-	.D		(iData),
-	.Q		(oRegB)
+	.D		({iCarry,iData}),
+	.Q		({oCarryB,oRegB})
 );
 
 ////////////////////////////////////////////////////////////////////////

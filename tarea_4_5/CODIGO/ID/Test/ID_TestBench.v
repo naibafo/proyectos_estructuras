@@ -11,6 +11,8 @@ module TestBench;
 	reg [7:0] regB;
 	reg [5:0] Operation;
 	reg [9:0] Data; 
+	reg		   CarryA;
+	reg		   CarryB;
 	
 	// Outputs from the ID module
 	wire [5:0] 	OperationID;
@@ -28,7 +30,9 @@ module TestBench;
 		.iOperation_IF(Operation),	//	Input Operation from the IF		
 		.iData_IF(Data),			//	Input Data from the IF
 		.iRegA(regA),				//	Reg A
+		.iCarryA(CarryA),			//	Carry A
 		.iRegB(regB),				//	Reg B
+		.iCarryB(CarryB),			//	Carry B
 		.oOperation_ID(OperationID),//	Output Operation
 		.oData_ID(DataID),			//	Output Data
 		.oBranchTaken(BranchTaken)	//	Flag that indicates if we need to branch
