@@ -78,12 +78,9 @@ while ($inline = <IN_DH>) {
 		# Add definition to definitions string
 		$definitions .= "$inline \n";
 	} 
-	# For the NOP instruction
+	# For the instruction
 	else {
-		# Obtain comments and  save them in tmp_comment
-		$tmp_comment = $inline;
-		$tmp_comment =~ s/^.*\s*\/\/// or $tmp_comment =~ s/.*//; # Added in case there is no comments
-		$inline =~ s/\s*\/\/.*//;
+		set_vars();
 
 		# Include NOP code in instructions
 		$instructions .= "\t$inst_counter: oInstruction = { `$tmp_arguments[0] , $tmp_arguments[1]};";
@@ -94,27 +91,6 @@ while ($inline = <IN_DH>) {
 		# Next line
 		next;
 	}
-
-	# FOR VGA
-	elsif ($inline =~ /^VGA\s/) {
-		# Set and clean $tmp_comment, $inline 
-		set_vars();
-		
-		# Check for correct format
-		if ($#tmp_arguments != 3) {
-			print "\t-E-\t Wrong number of arguments for VGA instruction. Given $#tmp_arguments, spected: 3 \t Line: <$line_counter> \n";
-			exit;
-		}
-		
-		# Include VGA code in instructions
-		$instructions .= "\t$inst_counter: oInstruction = { `VGA , $tmp_arguments[1],5'b0 , $tmp_arguments[2], $tmp_arguments[3]  };"; # No need for destination
-		# Increase instruction counter
-		$inst_counter++;
-		# Add comments
-		$instructions .= ($tmp_comment) ? " \/\/ $tmp_comment \n": "\n" ;
-		# Next line
-		next;
-	} 
 }
 # Done with input file.
 close(IN_DH);
@@ -126,18 +102,17 @@ if ($output_file) {
 	open (OUT_DH, ">", "$output_file") or die "\t-E-\tCould not open file for OUTPUT: \t $output_file \n";
 	# Output string contains the ROM module format.
 	my $output_string = "
-`timescale 1ns / 1ps
-`include \"Defintions.v\"
-";
+`timescale 1ns / 1ps";
+
 	# Add the definitions in file:
-	$output_string .= "$definitions";
-	
+	($definitions) and $output_string .= "$definitions";
+	 
 	# Add the module definition
 	$output_string .= "
 module ROM
 (
-	input  wire[15:0]  		iAddress,
-	output reg [27:0] 		oInstruction
+	input  wire[9:0]  		iAddress,
+	output reg [15:0] 		oInstruction
 );	
 always @ ( iAddress )
 begin
@@ -149,7 +124,7 @@ begin
 	# Rest of file
 	$output_string .= "
 	default:
-		oInstruction = { `LED ,  24'b10101010 };		//NOP
+		oInstruction = { `NOP ,  10'b10101010 };		//NOP
 	endcase	
 end
 	
