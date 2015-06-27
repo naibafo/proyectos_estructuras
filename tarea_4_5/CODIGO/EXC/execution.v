@@ -93,7 +93,67 @@ always @ (oOperation_EXC)
 					B = B-A.
 		*/
 		`SUBB:	{oCarry,oData_EXC} 	= 	iReg_B - iReg_A;
-							
+		
+		/*
+			SUBCA:
+					A = A-const.
+		*/
+		`SUBCA:	{oCarry,oData_EXC} 	= 	iReg_A - oData_EXC;	
+
+		/*
+			SUBCB:
+					B = B-const.
+		*/
+		`SUBCB:	{oCarry,oData_EXC} 	= 	iReg_A - oData_EXC;					
+
+		/*
+			ANDA:
+					A = A & B.
+		*/
+		`ANDA:	{oCarry,oData_EXC} 	= 	iReg_A & iReg_B;	
+
+		/*
+			ANDB:
+					B = A & B.
+		*/
+		`ANDB:	{oCarry,oData_EXC} 	= 	iReg_A & iReg_B;	
+
+		/*
+			ANDCA:
+					A = A & const.
+		*/
+		`ANDCA:	{oCarry,oData_EXC} 	= 	iReg_A & oData_EXC;	
+
+		/*
+			ANDCB:
+					B = B & const.
+		*/
+		`ANDCB:	{oCarry,oData_EXC} 	= 	iReg_A & oData_EXC;
+
+		/*
+			ORA:
+					A = A | B.
+		*/
+		`ORA:	{oCarry,oData_EXC} 	= 	iReg_A | iReg_B;
+		
+		/*
+			ORB:
+					B = A | B.
+		*/
+		`ORB:	{oCarry,oData_EXC} 	= 	iReg_A | iReg_B;
+
+		/*
+			ORCA:
+					A = A | const.
+		*/
+		`ORCA:	{oCarry,oData_EXC} 	= 	iReg_A | oDataEXC;
+		
+		/*
+			ORCB:
+					B = B | const.
+		*/
+		`ORCB:	{oCarry,oData_EXC} 	= 	iReg_B | oDataEXC;
+	
 		default:
 			begin
 				oBranchTaken 	=	1'b0;			// No branch needed
