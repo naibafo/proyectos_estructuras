@@ -79,7 +79,7 @@ always @ (oOperation_EXC)
 			ADDCB:
 					B = B+const.
 		*/
-		`ADDCA:	{oCarry,oResult} 	= 	iReg_B + oData_EXC;	
+		`ADDCB:	{oCarry,oResult} 	= 	iReg_B + oData_EXC;	
 		
 		/*
 			SUBA:
