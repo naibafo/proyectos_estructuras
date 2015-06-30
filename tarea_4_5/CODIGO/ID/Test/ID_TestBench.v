@@ -65,11 +65,11 @@ module TestBench;
         
         // No Branch should be taken:
 		#20 
-		regA = 8'b1111; 
-		Operation = `BAEQ;
+		regA = 8'b00101010; 
+		Operation = `BAPL;
 		
 		#40 
-		regA = 8'b0;
+		regB = 8'b0;
 		
 		
 		

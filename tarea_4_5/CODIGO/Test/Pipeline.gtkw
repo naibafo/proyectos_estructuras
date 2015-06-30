@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
+[*] Tue Jun 30 18:11:36 2015
+[*]
+[dumpfile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.vcd"
+[dumpfile_mtime] "Tue Jun 30 18:09:00 2015"
+[dumpfile_size] 2739
+[savefile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-15.884756 89500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TestBench.
+[treeopen] TestBench.ID.
+[sst_width] 197
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@28
+TestBench.Clock
+TestBench.Reset
+@200
+-
+@22
+TestBench.Operation_IF[5:0]
+TestBench.Data_IF[9:0]
+@200
+-
+@22
+TestBench.Data_ID[9:0]
+TestBench.Operation_ID[5:0]
+@28
+TestBench.BranchTaken
+@200
+-
+@28
+TestBench.CarryA
+TestBench.CarryB
+@22
+TestBench.regA[7:0]
+TestBench.regB[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

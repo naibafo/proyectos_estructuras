@@ -10,7 +10,7 @@
 */
 module InstructionFetcher
 (
-	input wire	 		Clock,				// 	Input Clock
+	input wire	 	Clock,				// 	Input Clock
 	input wire 		Reset,				// 	Reset signal
 	input wire 		iBranchTaken,		//
 	input wire [9:0]	iRelativeJump,		//
@@ -29,7 +29,7 @@ wire [9:0] JumpDirection;
 // We jump to the PC plus the relative jump (is given in complement)
 assign JumpDirection = ProgramCounter+iRelativeJump;
 // Next value depends on wheter or not we branch
-assign NextPCValue = (iBranchTaken) ? (ProgramCounter+1) : (JumpDirection);
+assign NextPCValue = (iBranchTaken) ? (JumpDirection): (ProgramCounter+1);
 
 // --------------------- //
 //    Program Counter    //
