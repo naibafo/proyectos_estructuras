@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
-[*] Tue Jun 30 19:01:39 2015
+[*] Tue Jun 30 21:14:00 2015
 [*]
 [dumpfile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.vcd"
-[dumpfile_mtime] "Tue Jun 30 19:00:01 2015"
-[dumpfile_size] 6925
+[dumpfile_mtime] "Tue Jun 30 21:13:11 2015"
+[dumpfile_size] 7226
 [savefile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.gtkw"
-[timestart] 0
+[timestart] 35600
 [size] 1000 600
 [pos] -1 -1
-*-16.981613 190000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.981613 130000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TestBench.
 [treeopen] TestBench.ID.
 [treeopen] TestBench.IF.
@@ -25,7 +25,6 @@ TestBench.Reset
 @22
 TestBench.Operation_IF[5:0]
 TestBench.Data_IF[9:0]
-@23
 TestBench.IF.ProgramCounter[9:0]
 @200
 -
@@ -36,11 +35,19 @@ TestBench.Operation_ID[5:0]
 TestBench.BranchTaken
 @200
 -
+@22
+TestBench.Data_EXC[9:0]
+TestBench.Operation_EXC[6:0]
+@28
+TestBench.Result[7:0]
+TestBench.Carry
+@200
+-
 @28
 TestBench.CarryA
 TestBench.CarryB
-@22
 TestBench.regA[7:0]
+@29
 TestBench.regB[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

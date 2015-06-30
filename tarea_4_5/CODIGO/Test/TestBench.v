@@ -15,13 +15,17 @@ module TestBench;
 	wire [9:0]	RelativeJump;
 	wire		BranchTaken; 
 	
-	// Inputs to ID module
 	// Inputs for the ID module
 	reg [7:0] regA; 
 	reg [7:0] regB; 
 	reg		   CarryA;
 	reg		   CarryB;
 	
+	// Outputs from EXC module
+	wire [7:0]	Result;
+	wire 		Carry;
+	wire [9:0]	Data_EXC;
+	wire [6:0]	Operation_EXC;
 	// ---------------------
 	// Module instanciation:
 	// ---------------------
@@ -52,6 +56,24 @@ module TestBench;
 		.oData_ID(Data_ID),				//	Output Data
 		.oBranchTaken(BranchTaken)		//	Flag that indicates if we need to branch
 	);
+	
+	// Execution
+	Execution EXC
+	(
+		.Clock(Clock),					// 	Input Clock
+		.Reset(Reset),
+		.iOperation_ID(Operation_ID),
+		.iData_ID(Data_ID),
+		.iReg_A(regA),
+		.iCarryA(CarryA),
+		.iReg_B(regB),
+		.iCarryB(CarryB),
+		.oResult(Result),
+		.oCarry(Carry),
+		.oOperation_EXC(Operation_EXC),
+		.oData_EXC(Data_EXC)
+	);
+	
 	always
 		begin
 			#10  Clock =  ! Clock;
@@ -72,8 +94,8 @@ module TestBench;
 		#20
 		Reset = 0;
 		
-		regA = 0;
-		regB = 0;
+		regA = 8'b11110101;
+		regB = 8'b10101010;
 		CarryA = 0;
 		CarryB = 0;
 		

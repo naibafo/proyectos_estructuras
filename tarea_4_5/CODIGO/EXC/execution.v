@@ -103,7 +103,7 @@ always @ (oOperation_EXC)
 			SUBCB:
 					B = B-const.
 		*/
-		`SUBCB:	{oCarry,oResult} 	= 	iReg_A - oData_EXC;					
+		`SUBCB:	{oCarry,oResult} 	= 	iReg_B - oData_EXC;					
 
 		/*
 			ANDA:

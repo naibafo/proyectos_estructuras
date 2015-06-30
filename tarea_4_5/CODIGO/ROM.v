@@ -9,14 +9,14 @@ always @ ( iAddress )
 begin
 	case (iAddress)
 	
-	0: oInstruction = { `LDA , 10'b1111100000};
-	1: oInstruction = { `LDB , 10'b0000011111};
-	2: oInstruction = { `ADDCA , 10'b1111111111};
-	3: oInstruction = { `ADDCB , 10'b1010101010};
-	4: oInstruction = { `STB , 10'b0};
-	5: oInstruction = { `STA , 10'b1};
-	6: oInstruction = { `BAEQ , 10'b1111111011};
-	7: oInstruction = { `SUBA , 10'h3};
+	0: oInstruction = { `ADDA , 10'b0};
+	1: oInstruction = { `ADDB , 10'b0};
+	2: oInstruction = { `SUBA , 10'b0};
+	3: oInstruction = { `SUBB , 10'b0};
+	4: oInstruction = { `ADDCA , 10'b0000100001};
+	5: oInstruction = { `ADDCB , 10'b0000100001};
+	6: oInstruction = { `SUBCA , 10'b0000100001};
+	7: oInstruction = { `SUBCB , 10'b0000100001};
 
 
 	default:
