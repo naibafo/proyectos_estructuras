@@ -32,7 +32,7 @@ module TestBench;
 		.Clock(Clock),					//	Input Clock
 		.Reset(Reset),					//	Reset	
 		.iBranchTaken(BranchTaken),		//	BranchTaken
-		.iRelativeJump(RelativeJump),	//	RelativeJump
+		.iRelativeJump(Data_ID),	//	RelativeJump
 		.oOperation_IF(Operation_IF),	//	Operation from IF module
 		.oData_IF(Data_IF)				// 	Data from IF module
 	);
@@ -77,7 +77,7 @@ module TestBench;
 		CarryA = 0;
 		CarryB = 0;
 		
-		#180
+		#350
 		$finish;
 
 	end

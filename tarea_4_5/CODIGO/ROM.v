@@ -15,7 +15,8 @@ begin
 	3: oInstruction = { `ADDCB , 10'b1010101010};
 	4: oInstruction = { `STB , 10'b0};
 	5: oInstruction = { `STA , 10'b1};
-	6: oInstruction = { `BAEQ , 10'b0};
+	6: oInstruction = { `BAEQ , 10'b1111111011};
+	7: oInstruction = { `SUBA , 10'h3};
 
 
 	default:
