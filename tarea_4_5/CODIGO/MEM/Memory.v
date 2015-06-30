@@ -17,7 +17,7 @@ module Memory
 	input wire 			iCarry_result, //Input Carry bit from result
 	input wire	[7:0]	iRegA,		//	Reg A
 	input wire 	[7:0]	iRegB,		//	Reg B
-	input wire 	[6:0]	iOperation,  //  Code for operation
+	input wire 	[5:0]	iOperation,  //  Code for operation
 	output wire [7:0]	oData,		// 	Output data from memory block
 	output reg 			oModA,		// 	Flag to modificate Reg A
 	output reg 			oModB		// 	Flag to modificate Reg B
@@ -67,7 +67,7 @@ FFD # ( 8 ) Data_FF
 reg rSelection;
 
 // Output from the Mux wich selects between Data an Result.
-wire Result_Sel;
+wire [7:0] Result_Sel;
 assign Result_Sel = rSelection? wData:wResult;
 ///////////////////////////////
 // I/O for the RAM:
@@ -97,10 +97,8 @@ RAM_DUAL_READ_PORT RAM(
 	.oDataOut(Memory_Data)
 );
 
-reg rResult_Ins;
-
 // Selection between the 
-assign oData = wMemory_sel? Memory_Data:rResult_Ins;
+assign oData = wMemory_sel? Memory_Data:Result_Sel;
 
 
 //////////////////////////////////////////////////////////////////////  
@@ -139,7 +137,7 @@ assign wCarry_sel =  rSelection? rCarry:wCarry;
 assign wCarry_flag = wMemory_sel? rCarry_sel:1'b0;
 
 
-always @ (iOperation)
+always @ (Clock)
 	////////////////////////////////////////////////////////////////////
 	case (iOperation)
 	////////////////////////////////////////////////////////////////////
@@ -161,6 +159,37 @@ always @ (iOperation)
 				oModA		=	1'b1;
 				oModB		=	1'b0; 
 			end
+////////////////////////////////////////////////////////////////////////			
+		`LDB:
+			begin
+				rSelection	=	1'b0;
+				wMemory_sel	= 	1'b1;
+				rReg_selection=	1'b0;
+				iWriteEnable =  1'b0;
+				oModA		=	1'b1;
+				oModB		=	1'b0; 
+			end
+////////////////////////////////////////////////////////////////////////			
+		`LDCA:
+			begin
+				rSelection	=	1'b1;
+				wMemory_sel	= 	1'b0;
+				rReg_selection=	1'b1;
+				iWriteEnable =  1'b0;
+				oModA		=	1'b1;
+				oModB		=	1'b0; 
+			end
+////////////////////////////////////////////////////////////////////////
+		`LDCB:
+			begin
+				rSelection	=	1'b1;
+				wMemory_sel	= 	1'b0;
+				rReg_selection=	1'b0;
+				iWriteEnable =  1'b0;
+				oModA		=	1'b0;
+				oModB		=	1'b1; 
+			end
+////////////////////////////////////////////////////////////////////////					
 		`STA:
 			begin
 				rSelection	=	1'b1;
@@ -170,13 +199,45 @@ always @ (iOperation)
 				oModA		=	1'b0;
 				oModB		=	1'b0; 			
 			end
+////////////////////////////////////////////////////////////////////////			
+		`STB:
+			begin
+				rSelection	=	1'b1;
+				wMemory_sel	= 	1'b0;
+				rReg_selection=	1'b0;
+				iWriteEnable =  1'b1;
+				oModA		=	1'b0;
+				oModB		=	1'b0; 			
+			end
+////////////////////////////////////////////////////////////////////////					
+		`ADDA,`ADDCA,`SUBA,`SUBCA,`ANDA,`ANDCA,`ORA,`ORCA,`ASLA,`ASRA:
+			begin
+				rSelection	=	1'b0;
+				wMemory_sel	= 	1'b0;
+				rReg_selection=	1'b1;
+				iWriteEnable =  1'b0;
+				oModA		=	1'b1;
+				oModB		=	1'b0; 			
+			end
+////////////////////////////////////////////////////////////////////////
+		`ADDB,`ADDCB,`SUBB,`SUBCB,`ANDB,`ANDCB,`ORB,`ORCB:
+			begin
+				rSelection	=	1'b0;
+				wMemory_sel	= 	1'b0;
+				rReg_selection=	1'b1;
+				iWriteEnable =  1'b0;
+				oModA		=	1'b0;
+				oModB		=	1'b1; 			
+			end
+////////////////////////////////////////////////////////////////////////
+			
 		default:
 			begin
 				rSelection	=	1'b0;
 				wMemory_sel	= 	1'b0;
 				rReg_selection=	1'b0;
 				iWriteEnable =  1'b0;
-				oModA		=	1'b1;
+				oModA		=	1'b0;
 				oModB		=	1'b0;
 			end	
 	////////////////////////////////////////////////////////////////////

@@ -57,10 +57,10 @@ module TestBench;
 		// Initialize Inputs
 		Clock = 0;
 		Reset = 0;
-		RegA = 7'b1010101;
+		RegA = 7'b1000010;
 		RegB = 7'b0101010;
-		Operation_ID = `STA;
-		iResult = 7'b0000000;
+		Operation_ID = `NOP;
+		iResult = 7'b0000010;
 		Data_EXC = 9'b111110000;
 		iCarry = 1'b0;
 		
@@ -69,10 +69,14 @@ module TestBench;
 		# 20
 		Reset = 0;
 		
-		#100
-		Operation_ID = `LDA;
-	
-		
+		#25
+		Operation_ID = `ASLA;
+		#10
+		Operation_ID = `ADDA;
+		#10
+		Operation_ID = `ADDB;
+		#10
+		Operation_ID = `SUBA;
 		#150
 		$finish;
 
