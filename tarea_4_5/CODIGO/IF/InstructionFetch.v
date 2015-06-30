@@ -10,7 +10,7 @@
 */
 module InstructionFetcher
 (
-	input wire	 		Clock,				// 	Input Clock
+	input wire	 	Clock,				// 	Input Clock
 	input wire 		Reset,				// 	Reset signal
 	input wire 		iBranchTaken,		//
 	input wire [9:0]	iRelativeJump,		//

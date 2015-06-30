@@ -153,6 +153,19 @@ always @ (oOperation_EXC)
 					B = B | const.
 		*/
 		`ORCB:	{oCarry,oData_EXC} 	= 	iReg_B | oDataEXC;
+		
+		/*
+			ASLA:
+					A={(A6),(A5),(A4), (A3), (A2), (A1), (A0),0}
+		*/
+		`ASLA:	{oCarry,oData_EXC} 	= 	iReg_A << 1;
+
+		/*
+			ASRA:
+					A={0,(A7), (A6),(A5), (A4), (A3), (A2), (A1)}
+		*/
+		`ASRA:	{oCarry,oData_EXC} 	= 	iReg_A >> 1;
+
 	
 		default:
 			begin
