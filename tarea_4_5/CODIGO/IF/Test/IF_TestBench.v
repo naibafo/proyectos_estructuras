@@ -49,7 +49,13 @@ module TestBench;
 		# 20
 		Reset = 0;
 		
+		# 40
+		BranchTaken = 1;
+		RelativeJump = 10'b1111111111;
 		
+		#20 
+		BranchTaken = 0;
+		RelativeJump = 10'b11;
 		
 		#150
 		$finish;

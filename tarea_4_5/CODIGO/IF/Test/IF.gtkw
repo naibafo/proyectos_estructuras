@@ -1,26 +1,30 @@
 [*]
 [*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
-[*] Tue Jun 30 17:42:07 2015
+[*] Tue Jun 30 17:55:42 2015
 [*]
 [dumpfile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/IF/Test/IF.vcd"
-[dumpfile_mtime] "Tue Jun 30 17:41:16 2015"
-[dumpfile_size] 1662
+[dumpfile_mtime] "Tue Jun 30 17:54:14 2015"
+[dumpfile_size] 2811
 [savefile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/IF/Test/IF.gtkw"
 [timestart] 0
-[size] 1000 600
-[pos] 176 -23
-*0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1366 718
+[pos] 0 0
+*-15.176689 35500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TestBench.
 [sst_width] 197
-[signals_width] 166
+[signals_width] 182
 [sst_expanded] 1
-[sst_vpaned_height] 153
+[sst_vpaned_height] 195
 @28
 TestBench.Clock
 TestBench.Reset
 TestBench.BranchTaken
-@22
-TestBench.Data_IF[9:0]
-TestBench.OperationIF[5:0]
+@23
 TestBench.RelativeJump[9:0]
+@420
+TestBench.Data_IF[9:0]
+@22
+TestBench.OperationIF[5:0]
+TestBench.UUT.ProgramCounter[9:0]
 [pattern_trace] 1
 [pattern_trace] 0
