@@ -10,6 +10,28 @@
 ///	Arithmetic Instructions
 ////////////////////////////////////////////////////////////////////////
 `define ADDA	6'h07
+`define ADDB	6'h08
+`define ADDCA	6'h09
+`define ADDCB	6'h0A
+`define SUBA	6'h0B
+`define SUBB	6'h0C
+`define SUBCA	6'h0D
+`define SUBCB	6'h0E
+`define ANDA	6'h0F
+`define ANDB	6'h10
+`define ANDCA	6'h11
+`define ANDCB	6'h12
+`define ORA 	6'h13
+`define ORB 	6'h14
+`define ORCA	6'h15
+`define ORCB	6'h16
+`define ASLA	6'h17
+`define ASRA	6'h18
+
+////////////////////////////////////////////////////////////////////////
+/// JUMP
+////////////////////////////////////////////////////////////////////////
+`define JMP	6'h19
 
 ////////////////////////////////////////////////////////////////////////
 ///	Branching Instructions

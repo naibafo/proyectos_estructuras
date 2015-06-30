@@ -11,8 +11,8 @@ module Execution
 	input wire Clock,
 	input wire Reset,
 	
-	input wire iOperation_ID,
-	input wire iData_ID,
+	input wire [5:0] iOperation_ID,
+	input wire [9:0] iData_ID,
 	
 	input wire [7:0] iRegA,
 	input wire iCarryA,
@@ -23,7 +23,7 @@ module Execution
 	output reg [7:0] oResult,
 	output reg oCarry,
 	
-	output wire oOperatio_EXC,
+	output wire oOperation_EXC,
 	output wire oData_EXC
 	
 );
