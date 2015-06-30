@@ -1,0 +1,216 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x1fbcf80 .scope module, "Memory" "Memory" 2 11;
+ .timescale -9 -12;
+v0x1fecb00_0 .net "Clock", 0 0, C4<z>; 0 drivers
+v0x1fecc30_0 .net "Memory_Data", 7 0, v0x1fec0d0_0; 1 drivers
+v0x1feccb0_0 .net "Reg_Data", 7 0, L_0x1fee720; 1 drivers
+v0x1fecd60_0 .net "Reset", 0 0, C4<z>; 0 drivers
+v0x1fece10_0 .net "Result_Sel", 0 0, L_0x1fee630; 1 drivers
+v0x1fece90_0 .net *"_s12", 7 0, L_0x1fee840; 1 drivers
+v0x1fecf50_0 .net *"_s15", 6 0, C4<0000000>; 1 drivers
+v0x1fecfd0_0 .net *"_s24", 0 0, C4<0>; 1 drivers
+v0x1fed070_0 .net *"_s6", 7 0, L_0x1fee490; 1 drivers
+v0x1fed110_0 .net "iCarry_result", 0 0, C4<z>; 0 drivers
+v0x1fed1f0_0 .net "iData", 9 0, C4<zzzzzzzzzz>; 0 drivers
+v0x1fed270_0 .net "iOperation", 6 0, C4<zzzzzzz>; 0 drivers
+v0x1fed360_0 .net "iRegA", 7 0, C4<zzzzzzzz>; 0 drivers
+v0x1fed400_0 .net "iRegB", 7 0, C4<zzzzzzzz>; 0 drivers
+v0x1fed520_0 .net "iResult", 7 0, C4<zzzzzzzz>; 0 drivers
+v0x1fed5a0_0 .var "iWriteEnable", 0 0;
+v0x1fed480_0 .net "oData", 7 0, L_0x1fee9d0; 1 drivers
+v0x1fed6e0_0 .var "oModA", 0 0;
+v0x1fed620_0 .var "oModB", 0 0;
+v0x1fed820_0 .net "rCarry", 0 0, v0x1feb8f0_0; 1 drivers
+v0x1fed950_0 .var "rCarry_sel", 0 0;
+v0x1fed9d0_0 .var "rReg_selection", 0 0;
+v0x1fed8a0_0 .var "rResult_Ins", 0 0;
+v0x1fedb10_0 .var "rSelection", 0 0;
+v0x1feda50_0 .net "wCarry", 0 0, L_0x1feeb50; 1 drivers
+v0x1fedc60_0 .net "wCarry_flag", 0 0, L_0x1feee80; 1 drivers
+v0x1fedb90_0 .net "wCarry_sel", 0 0, L_0x1feecc0; 1 drivers
+v0x1feddc0_0 .net "wData", 7 0, v0x1fec530_0; 1 drivers
+v0x1fedce0_0 .var "wMemory_sel", 0 0;
+v0x1fedf30_0 .net "wResult", 7 0, v0x1fec980_0; 1 drivers
+E_0x1fbc020 .event edge, v0x1fed270_0;
+L_0x1fee3c0 .part C4<zzzzzzzzzz>, 0, 8;
+L_0x1fee490 .functor MUXZ 8, v0x1fec980_0, v0x1fec530_0, v0x1fedb10_0, C4<>;
+L_0x1fee630 .part L_0x1fee490, 0, 1;
+L_0x1fee720 .functor MUXZ 8, C4<zzzzzzzz>, C4<zzzzzzzz>, v0x1fed9d0_0, C4<>;
+L_0x1fee840 .concat [ 1 7 0 0], v0x1fed8a0_0, C4<0000000>;
+L_0x1fee9d0 .functor MUXZ 8, L_0x1fee840, v0x1fec0d0_0, v0x1fedce0_0, C4<>;
+L_0x1feeb50 .part C4<zzzzzzzzzz>, 8, 1;
+L_0x1feecc0 .functor MUXZ 1, L_0x1feeb50, v0x1feb8f0_0, v0x1fedb10_0, C4<>;
+L_0x1feee80 .functor MUXZ 1, C4<0>, v0x1fed950_0, v0x1fedce0_0, C4<>;
+S_0x1fec630 .scope module, "Result_Reg" "FFD" 2 37, 3 35, S_0x1fbcf80;
+ .timescale -9 -12;
+P_0x1fec728 .param/l "SIZE" 3 35, +C4<01000>;
+v0x1fec7c0_0 .alias "Clock", 0 0, v0x1fecb00_0;
+v0x1fec840_0 .alias "D", 7 0, v0x1fed520_0;
+v0x1fec8e0_0 .net "Enable", 0 0, C4<1>; 1 drivers
+v0x1fec980_0 .var "Q", 7 0;
+v0x1feca30_0 .alias "Reset", 0 0, v0x1fecd60_0;
+S_0x1fec170 .scope module, "Data_FF" "FFD" 2 54, 3 35, S_0x1fbcf80;
+ .timescale -9 -12;
+P_0x1fec268 .param/l "SIZE" 3 35, +C4<01000>;
+v0x1fec320_0 .alias "Clock", 0 0, v0x1fecb00_0;
+v0x1fec3f0_0 .net "D", 7 0, L_0x1fee3c0; 1 drivers
+v0x1fec490_0 .net "Enable", 0 0, C4<1>; 1 drivers
+v0x1fec530_0 .var "Q", 7 0;
+v0x1fec5b0_0 .alias "Reset", 0 0, v0x1fecd60_0;
+S_0x1feba40 .scope module, "RAM" "RAM_DUAL_READ_PORT" 2 90, 4 3, S_0x1fbcf80;
+ .timescale -9 -12;
+P_0x1febb38 .param/l "ADDR_WIDTH" 4 3, +C4<01010>;
+P_0x1febb60 .param/l "DATA_WIDTH" 4 3, +C4<01000>;
+P_0x1febb88 .param/l "MEM_SIZE" 4 3, +C4<010000000000>;
+v0x1febd20_0 .alias "Clock", 0 0, v0x1fecb00_0;
+v0x1febdf0 .array "Ram", 0 1023, 7 0;
+v0x1febe70_0 .alias "iDataIn", 7 0, v0x1feccb0_0;
+v0x1febef0_0 .alias "iReadAddress", 9 0, v0x1fed1f0_0;
+v0x1febfa0_0 .alias "iWriteAddress", 9 0, v0x1fed1f0_0;
+v0x1fec050_0 .net "iWriteEnable", 0 0, v0x1fed5a0_0; 1 drivers
+v0x1fec0d0_0 .var "oDataOut", 7 0;
+S_0x1fbef70 .scope module, "Carry_FF" "FFD" 2 122, 3 35, S_0x1fbcf80;
+ .timescale -9 -12;
+P_0x1fca428 .param/l "SIZE" 3 35, +C4<01>;
+v0x1fce890_0 .alias "Clock", 0 0, v0x1fecb00_0;
+v0x1feb7b0_0 .alias "D", 0 0, v0x1fed110_0;
+v0x1feb850_0 .net "Enable", 0 0, C4<1>; 1 drivers
+v0x1feb8f0_0 .var "Q", 0 0;
+v0x1feb9a0_0 .alias "Reset", 0 0, v0x1fecd60_0;
+E_0x1fbc7e0 .event posedge, v0x1fce890_0;
+S_0x1fbf860 .scope module, "UPCOUNTER_POSEDGE" "UPCOUNTER_POSEDGE" 3 6;
+ .timescale -9 -12;
+P_0x1fbc8d8 .param/l "SIZE" 3 6, +C4<010000>;
+v0x1fede40_0 .net "Clock", 0 0, C4<z>; 0 drivers
+v0x1fee0b0_0 .net "Enable", 0 0, C4<z>; 0 drivers
+v0x1fee130_0 .net "Initial", 15 0, C4<zzzzzzzzzzzzzzzz>; 0 drivers
+v0x1fee1d0_0 .var "Q", 15 0;
+v0x1fee280_0 .net "Reset", 0 0, C4<z>; 0 drivers
+E_0x1fedd90 .event posedge, v0x1fede40_0;
+    .scope S_0x1fec630;
+T_0 ;
+    %wait E_0x1fbc7e0;
+    %load/v 8, v0x1feca30_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x1fec980_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v0x1fec8e0_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %load/v 8, v0x1fec840_0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x1fec980_0, 0, 8;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1fec170;
+T_1 ;
+    %wait E_0x1fbc7e0;
+    %load/v 8, v0x1fec5b0_0, 1;
+    %jmp/0xz  T_1.0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x1fec530_0, 0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/v 8, v0x1fec490_0, 1;
+    %jmp/0xz  T_1.2, 8;
+    %load/v 8, v0x1fec3f0_0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x1fec530_0, 0, 8;
+T_1.2 ;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x1feba40;
+T_2 ;
+    %wait E_0x1fbc7e0;
+    %load/v 8, v0x1fec050_0, 1;
+    %jmp/0xz  T_2.0, 8;
+    %load/v 8, v0x1febe70_0, 8;
+    %ix/getv 3, v0x1febfa0_0;
+   %jmp/1 t_0, 4;
+   %ix/load 1, 0, 0;
+   %set/av v0x1febdf0, 8, 8;
+t_0 ;
+T_2.0 ;
+    %ix/getv 3, v0x1febef0_0;
+    %load/av 8, v0x1febdf0, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x1fec0d0_0, 0, 8;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x1fbef70;
+T_3 ;
+    %wait E_0x1fbc7e0;
+    %load/v 8, v0x1feb9a0_0, 1;
+    %jmp/0xz  T_3.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x1feb8f0_0, 0, 0;
+    %jmp T_3.1;
+T_3.0 ;
+    %load/v 8, v0x1feb850_0, 1;
+    %jmp/0xz  T_3.2, 8;
+    %load/v 8, v0x1feb7b0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x1feb8f0_0, 0, 8;
+T_3.2 ;
+T_3.1 ;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x1fbcf80;
+T_4 ;
+    %wait E_0x1fbc020;
+    %load/v 8, v0x1fed270_0, 7;
+    %cmpi/u 8, 1, 7;
+    %jmp/1 T_4.0, 6;
+    %set/v v0x1fedb10_0, 0, 1;
+    %set/v v0x1fedce0_0, 0, 1;
+    %set/v v0x1fed9d0_0, 0, 1;
+    %set/v v0x1fed5a0_0, 0, 1;
+    %set/v v0x1fed6e0_0, 1, 1;
+    %set/v v0x1fed620_0, 0, 1;
+    %jmp T_4.2;
+T_4.0 ;
+    %set/v v0x1fedb10_0, 0, 1;
+    %set/v v0x1fedce0_0, 1, 1;
+    %set/v v0x1fed9d0_0, 1, 1;
+    %set/v v0x1fed5a0_0, 0, 1;
+    %set/v v0x1fed6e0_0, 1, 1;
+    %set/v v0x1fed620_0, 0, 1;
+    %jmp T_4.2;
+T_4.2 ;
+    %jmp T_4;
+    .thread T_4, $push;
+    .scope S_0x1fbf860;
+T_5 ;
+    %wait E_0x1fedd90;
+    %load/v 8, v0x1fee280_0, 1;
+    %jmp/0xz  T_5.0, 8;
+    %load/v 8, v0x1fee130_0, 16;
+    %set/v v0x1fee1d0_0, 8, 16;
+    %jmp T_5.1;
+T_5.0 ;
+    %load/v 8, v0x1fee0b0_0, 1;
+    %jmp/0xz  T_5.2, 8;
+    %load/v 8, v0x1fee1d0_0, 16;
+    %mov 24, 0, 16;
+    %addi 8, 1, 32;
+    %set/v v0x1fee1d0_0, 8, 16;
+T_5.2 ;
+T_5.1 ;
+    %jmp T_5;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "Memory.v";
+    "../Collaterals.v";
+    "../RAM.v";
