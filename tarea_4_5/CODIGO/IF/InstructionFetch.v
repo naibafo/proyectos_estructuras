@@ -29,7 +29,7 @@ wire [9:0] JumpDirection;
 // We jump to the PC plus the relative jump (is given in complement)
 assign JumpDirection = ProgramCounter+iRelativeJump;
 // Next value depends on wheter or not we branch
-assign NextPCValue = (iBranchTaken) ? (ProgramCounter+1) : (JumpDirection);
+assign NextPCValue = (iBranchTaken) ? (JumpDirection): (ProgramCounter+1);
 
 // --------------------- //
 //    Program Counter    //
