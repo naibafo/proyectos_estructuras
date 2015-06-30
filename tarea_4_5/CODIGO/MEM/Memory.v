@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-//// MODULE: WriteBack                                              ////
+//// MODULE: Memory                                                 ////
 ////////////////////////////////////////////////////////////////////////
 /*
 		Write Back:
@@ -14,16 +14,12 @@ module WriteBack
 	input wire 			Reset,		// 	Reset signal
 	input wire  [7:0]	iData,		//	Input Data
 	input wire			iCarry,		// 	Input Carry
-	
 	input wire 			iModA,		// 	Flag to modificate Reg A
 	input wire 			iModB		// 	Flag to modificate Reg B
-	
 	output wire [7:0]	oRegA,		//	Reg A
 	output wire [7:0]	oRegB,		//	Reg B
 	output wire 		oCarryA,	//	Carry for Reg A2
 	output wire 		oCarryB,	//	Carry for Reg B
-	input wire  [7:0]	iData,		//	Input Data
-	input wire			iCarry,		// 	Input Carry
 );
 
 // --------------------- //
