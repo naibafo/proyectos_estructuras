@@ -20,7 +20,8 @@ module Memory
 	input wire 	[5:0]	iOperation,  //  Code for operation
 	output wire [7:0]	oData,		// 	Output data from memory block
 	output reg 			oModA,		// 	Flag to modificate Reg A
-	output reg 			oModB		// 	Flag to modificate Reg B
+	output reg 			oModB,		// 	Flag to modificate Reg B
+	output wire		    oCarry_flag //	Carry Flag from Memory
 );
 
 // Memory selection decides between read from the RAM or NOT.
@@ -112,12 +113,21 @@ assign oData = wMemory_sel? Memory_Data:Result_Sel;
 
 // Carry is passed in the 9th bit of iData from execution
 wire wCarry; 
-assign wCarry = iData[8];
+
+// FFD output with input 8th bit from Data from execution
+FFD # ( 1 ) Carry_FF 
+(
+	.Clock	(Clock),
+	.Reset	(Reset),
+	.Enable	(1'b1),
+	.D		(iData[8]),
+	.Q		(wCarry)
+);
 
 // FFD output with input iCarry_result
 wire rCarry; 
 
-FFD # ( 1 ) Carry_FF 
+FFD # ( 1 ) Result_Carry_FF 
 (
 	.Clock	(Clock),
 	.Reset	(Reset),
@@ -127,14 +137,13 @@ FFD # ( 1 ) Carry_FF
 );
 
 // The result carry from selection wich depends of the instruction.
-reg rCarry_sel;
+wire wCarry_sel;
 
 // Carry flag after reading or not from the memory
-wire wCarry_flag;
 
 
-assign wCarry_sel =  rSelection? rCarry:wCarry;
-assign wCarry_flag = wMemory_sel? rCarry_sel:1'b0;
+assign wCarry_sel =  rSelection? wCarry:rCarry;
+assign oCarry_flag = wMemory_sel? 1'b0:wCarry_sel;
 
 
 always @ (Clock)

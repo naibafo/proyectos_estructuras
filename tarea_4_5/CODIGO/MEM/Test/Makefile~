@@ -1,6 +1,6 @@
 all: TB
 
-TB: EXC_tb.v ../execution.v ../../Definitions.v ../../ROM.v ../../Collaterals.v 
-	iverilog -o EXC.test ../../Collaterals.v ../../Definitions.v ../../ROM.v ../execution.v EXC_tb.v
-	./EXC.test
-	gtkwave EXC.vcd 
+TB: MEM_tb.v ../Memory.v ../../Definitions.v ../../ROM.v ../../Collaterals.v ../../RAM.v 
+	iverilog -o MEM.test ../../Collaterals.v ../../Definitions.v ../../RAM.v ../Memory.v MEM_tb.v
+	./MEM.test
+	gtkwave MEM.vcd 

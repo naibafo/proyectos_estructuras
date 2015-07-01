@@ -24,6 +24,8 @@ module TestBench;
 	wire [7:0] DataOut;
 	wire ModA, ModB;
 	
+	wire CarryFlag;
+	
 	// ---------------------
 	// Module instanciation:
 	// ---------------------
@@ -40,7 +42,8 @@ module TestBench;
 	.iOperation(Operation_ID),  
 	.oData(DataOut),		
 	.oModA(ModA),		
-	.oModB(ModB)		
+	.oModB(ModB),
+	.oCarry_flag(CarryFlag)		
 	);
 	
 	
