@@ -145,10 +145,20 @@ wire wCarry_sel;
 assign wCarry_sel =  rSelection? wCarry:rCarry;
 assign oCarry_flag = wMemory_sel? 1'b0:wCarry_sel;
 
+///////// OP FFD
+wire [5:0] wOperation;
+FFD # ( 6 ) Operation 
+(
+	.Clock	(Clock),
+	.Reset	(Reset),
+	.Enable	(1'b1),
+	.D		(iOperation),
+	.Q		(wOperation)
+);
 
-always @ (Clock)
+always @ (wOperation)
 	////////////////////////////////////////////////////////////////////
-	case (iOperation)
+	case (wOperation)
 	////////////////////////////////////////////////////////////////////
 		
 		// --------------------------------

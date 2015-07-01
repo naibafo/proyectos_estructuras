@@ -16,10 +16,10 @@ module TestBench;
 	wire		BranchTaken; 
 	
 	// Inputs for the ID module
-	reg [7:0] regA; 
-	reg [7:0] regB; 
-	reg		   CarryA;
-	reg		   CarryB;
+	wire [7:0] regA; 
+	wire [7:0] regB; 
+	wire		   CarryA;
+	wire		   CarryB;
 	
 	// Outputs from EXC module
 	wire [7:0]	Result;
@@ -81,24 +81,37 @@ module TestBench;
 		.oData_EXC(Data_EXC)
 	);
 	
+	// Memory
 	Memory MEM
 	(
-	.Clock(Clock),
-	.Reset(Reset),		
-	.iResult(Result),	
-	.iData(Data_EXC),		
-	.iCarry_result(Carry), 
-	.iRegA(regA),		
-	.iRegB(regB),		
-	.iOperation(Operation_EXC),  
-	.oData(MEM_Out),		
-	.oModA(ModA),		
-	.oModB(ModB),
-	.oCarry_flag(CarryFlag)		
+		.Clock(Clock),
+		.Reset(Reset),		
+		.iResult(Result),	
+		.iData(Data_EXC),		
+		.iCarry_result(Carry), 
+		.iRegA(regA),		
+		.iRegB(regB),		
+		.iOperation(Operation_EXC),  
+		.oData(MEM_Out),		
+		.oModA(ModA),		
+		.oModB(ModB),
+		.oCarry_flag(CarryFlag)		
 	);
 	
-	
-	
+	// Write Back
+	WriteBack WB
+	(
+		.Clock(Clock),
+		.Reset(Reset),
+		.iData(MEM_Out),
+		.iCarry(CarryFlag),
+		.iModA(ModA),
+		.iModB(ModB),
+		.oRegA(regA),
+		.oRegB(regB),
+		.oCarryA(CarryA),
+		.oCarryB(CarryB)
+	);
 	always
 		begin
 			#10  Clock =  ! Clock;
@@ -119,12 +132,8 @@ module TestBench;
 		#20
 		Reset = 0;
 		
-		regA = 8'b11110101;
-		regB = 8'b10101010;
-		CarryA = 0;
-		CarryB = 0;
 		
-		#350
+		#1000
 		$finish;
 
 	end

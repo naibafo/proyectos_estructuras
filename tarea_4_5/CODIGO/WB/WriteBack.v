@@ -11,12 +11,12 @@
 module WriteBack
 (
 	input wire	 		Clock,		// 	Input Clock
-	input wire 			Reset,		// 	Reset signal
+	input wire 		Reset,		// 	Reset signal
 	input wire  [7:0]	iData,		//	Input Data
 	input wire			iCarry,		// 	Input Carry
 	
-	input wire 			iModA,		// 	Flag to modificate Reg A
-	input wire 			iModB,		// 	Flag to modificate Reg B
+	input wire 		iModA,		// 	Flag to modificate Reg A
+	input wire 		iModB,		// 	Flag to modificate Reg B
 	
 	output wire [7:0]	oRegA,		//	Reg A
 	output wire [7:0]	oRegB,		//	Reg B
