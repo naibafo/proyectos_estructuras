@@ -25,7 +25,14 @@ module TestBench;
 	wire [7:0]	Result;
 	wire 		Carry;
 	wire [9:0]	Data_EXC;
-	wire [6:0]	Operation_EXC;
+	wire [5:0]	Operation_EXC;
+	
+	//Outputs from MEM module
+	
+	wire ModA, ModB;
+	wire [7:0] MEM_Out;
+	wire CarryFlag;
+	
 	// ---------------------
 	// Module instanciation:
 	// ---------------------
@@ -73,6 +80,24 @@ module TestBench;
 		.oOperation_EXC(Operation_EXC),
 		.oData_EXC(Data_EXC)
 	);
+	
+	Memory MEM
+	(
+	.Clock(Clock),
+	.Reset(Reset),		
+	.iResult(Result),	
+	.iData(Data_EXC),		
+	.iCarry_result(Carry), 
+	.iRegA(regA),		
+	.iRegB(regB),		
+	.iOperation(Operation_EXC),  
+	.oData(MEM_Out),		
+	.oModA(ModA),		
+	.oModB(ModB),
+	.oCarry_flag(CarryFlag)		
+	);
+	
+	
 	
 	always
 		begin
