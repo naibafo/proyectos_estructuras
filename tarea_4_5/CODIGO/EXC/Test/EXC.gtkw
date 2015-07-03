@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
-[*] Tue Jun 30 19:43:10 2015
+[*] Fri Jul  3 04:50:31 2015
 [*]
 [dumpfile] "/home/r2/Documentos/EstructurasII/Tareas3-4-5/proyectos_estructuras/tarea_4_5/CODIGO/EXC/Test/EXC.vcd"
-[dumpfile_mtime] "Tue Jun 30 19:42:20 2015"
-[dumpfile_size] 2006
+[dumpfile_mtime] "Fri Jul  3 04:49:50 2015"
+[dumpfile_size] 2152
 [savefile] "/home/r2/Documentos/EstructurasII/Tareas3-4-5/proyectos_estructuras/tarea_4_5/CODIGO/EXC/Test/EXC.gtkw"
 [timestart] 0
 [size] 1000 600
@@ -20,12 +20,12 @@ TestBench.Reset
 @24
 TestBench.RegA[7:0]
 TestBench.RegB[7:0]
-@22
 TestBench.oData_EXC[9:0]
+@22
 TestBench.oOperation_EXC[5:0]
-@28
+@24
 TestBench.oResult[7:0]
-@29
+@28
 TestBench.oCarry
 [pattern_trace] 1
 [pattern_trace] 0
