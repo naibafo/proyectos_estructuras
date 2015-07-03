@@ -56,9 +56,9 @@ module TestBench;
 		.Reset(Reset|BranchTaken),		// 	Reset signal
 		.iOperation_IF(Operation_IF),	//	Input Operation from the IF		
 		.iData_IF(Data_IF),				//	Input Data from the IF
-		.iRegA(regA),					//	Reg A
+		.iRegA(regA),					//	Register A
 		.iCarryA(CarryA),				//	Carry A
-		.iRegB(regB),					//	Reg B
+		.iRegB(regB),					//	Register B
 		.iCarryB(CarryB),				//	Carry B
 		.oOperation_ID(Operation_ID),	//	Output Operation
 		.oData_ID(Data_ID),				//	Output Data
@@ -69,17 +69,17 @@ module TestBench;
 	Execution EXC
 	(
 		.Clock(Clock),					// 	Input Clock
-		.Reset(Reset),
-		.iOperation_ID(Operation_ID),
-		.iData_ID(Data_ID),
-		.iReg_A(regA),
-		.iCarryA(CarryA),
-		.iReg_B(regB),
-		.iCarryB(CarryB),
-		.oResult(Result),
-		.oCarry(Carry),
-		.oOperation_EXC(Operation_EXC),
-		.oData_EXC(Data_EXC)
+		.Reset(Reset),					//  Reset signal
+		.iOperation_ID(Operation_ID),	//	Input Operation from ID
+		.iData_ID(Data_ID),				//	Input Data from ID
+		.iReg_A(regA),					//	Register A
+		.iCarryA(CarryA),				// 	Carry A
+		.iReg_B(regB),					// 	Register B
+		.iCarryB(CarryB),				// 	Carry B
+		.oResult(Result),				//	Result of arithmetic or logic operation
+		.oCarry(Carry),					// 	Carry of arithmetic or logic operation
+		.oOperation_EXC(Operation_EXC),	//	Output Operation
+		.oData_EXC(Data_EXC)			//	Ouput Data
 	);
 	
 	// Memory
