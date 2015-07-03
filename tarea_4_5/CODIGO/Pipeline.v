@@ -2,8 +2,8 @@ module pipeline
 (
 	input wire Clock,
 	input wire Reset,
-	output wire regA,
-	output wire regB
+	output wire [7:0] regA,
+	output wire [7:0] regB
 );
 
 	// Outputs from the IF module
