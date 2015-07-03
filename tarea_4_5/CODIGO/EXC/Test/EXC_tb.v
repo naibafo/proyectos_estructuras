@@ -57,23 +57,25 @@ module TestBench;
 		Clock = 0;
 		Reset = 0;
 		
-		RegA = 8'b11010101;
+		RegB = 8'b01010101;
 		CarryA = 1'b0;
 		
-		RegB = 8'b10101010;
+		RegA = 8'b10101010;
 		CarryA = 1'b0;
 		
-		Operation_ID = `ADDA;
-		Data_ID = 9'b1;
+		Operation_ID = `ANDA;
+		Data_ID = 9'd76;
 		
 		# 5
 		Reset = 1;
 		# 20
 		Reset = 0;
 		
-		#20 Operation_ID = `ADDCB;
-		#20 Operation_ID = `ORB;
-		#100
+		#20 Operation_ID = `ANDCB;
+		#20 Operation_ID = `ORA;
+		#20 Operation_ID = `ORCB;
+		#20 Operation_ID = `ASRA;
+		#20
 		$finish;
 
 	end

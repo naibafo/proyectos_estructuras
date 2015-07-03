@@ -1,0 +1,31 @@
+[*]
+[*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
+[*] Fri Jul  3 03:59:40 2015
+[*]
+[dumpfile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline_mod.vcd"
+[dumpfile_mtime] "Fri Jul  3 03:59:29 2015"
+[dumpfile_size] 25146
+[savefile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline_mod.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-16.325850 54200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] entire_module_tb.
+[sst_width] 202
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 152
+@28
+entire_module_tb.Clock
+entire_module_tb.Reset
+@22
+entire_module_tb.UUT.Operation_IF[5:0]
+entire_module_tb.UUT.Operation_ID[5:0]
+entire_module_tb.UUT.Operation_EXC[5:0]
+entire_module_tb.UUT.Data_IF[9:0]
+entire_module_tb.UUT.Data_ID[9:0]
+entire_module_tb.A[7:0]
+@23
+entire_module_tb.B[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

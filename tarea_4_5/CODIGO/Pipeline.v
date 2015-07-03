@@ -2,8 +2,8 @@ module pipeline
 (
 	input wire Clock,
 	input wire Reset,
-	output wire oRegA,
-	output wire oRegB
+	output wire [7:0] regA,
+	output wire [7:0] regB
 );
 
 	// Outputs from the IF module
@@ -16,8 +16,6 @@ module pipeline
 	wire		BranchTaken; 
 	
 	// Inputs for the ID module
-	wire [7:0] regA; 
-	wire [7:0] regB; 
 	wire	   CarryA;
 	wire	   CarryB;
 	

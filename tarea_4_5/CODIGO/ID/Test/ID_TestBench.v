@@ -68,12 +68,12 @@ module TestBench;
 		regA = 8'b00101010; 
 		Operation = `BAPL;
 		
-		#40 
-		regB = 8'b0;
+		
+		#90 
+		regA = 8'hFF;
 		
 		
-		
-		#150
+		#50
 		$finish;
 
 	end

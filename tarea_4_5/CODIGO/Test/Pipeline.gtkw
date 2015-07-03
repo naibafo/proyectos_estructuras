@@ -1,15 +1,15 @@
 [*]
-[*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
-[*] Wed Jul  1 01:07:30 2015
+[*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
+[*] Fri Jul  3 04:36:22 2015
 [*]
-[dumpfile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.vcd"
-[dumpfile_mtime] "Wed Jul  1 01:05:26 2015"
-[dumpfile_size] 16046
-[savefile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.gtkw"
+[dumpfile] "/home/r2/Documentos/EstructurasII/Tareas3-4-5/proyectos_estructuras/tarea_4_5/CODIGO/Test/Pipeline.vcd"
+[dumpfile_mtime] "Fri Jul  3 04:36:07 2015"
+[dumpfile_size] 24026
+[savefile] "/home/r2/Documentos/EstructurasII/Tareas3-4-5/proyectos_estructuras/tarea_4_5/CODIGO/Test/Pipeline.gtkw"
 [timestart] 0
 [size] 1366 718
 [pos] -1 -1
-*-15.981613 186000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.981613 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TestBench.
 [treeopen] TestBench.ID.
 [treeopen] TestBench.IF.
