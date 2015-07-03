@@ -1,0 +1,36 @@
+[*]
+[*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
+[*] Fri Jul  3 05:15:23 2015
+[*]
+[dumpfile] "/home/felipe/Documentos/Estructuras de computadoras II/proyectos_estructuras/tarea_4_5/CODIGO/MEM/Test/MEM.vcd"
+[dumpfile_mtime] "Fri Jul  3 05:13:38 2015"
+[dumpfile_size] 3693
+[savefile] "/home/felipe/Documentos/Estructuras de computadoras II/proyectos_estructuras/tarea_4_5/CODIGO/MEM/Test/Señales.gtkw"
+[timestart] 0
+[size] 1366 744
+[pos] -367 -117
+*-15.580155 16100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 211
+@28
+TestBench.Clock
+TestBench.Reset
+@23
+TestBench.Operation_ID[5:0]
+@22
+TestBench.Data_EXC[9:0]
+TestBench.iResult[7:0]
+TestBench.RegA[7:0]
+TestBench.RegB[7:0]
+@28
+TestBench.iCarry
+@22
+TestBench.DataOut[7:0]
+@28
+TestBench.ModA
+TestBench.ModB
+TestBench.CarryFlag
+[pattern_trace] 1
+[pattern_trace] 0

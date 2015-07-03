@@ -73,13 +73,15 @@ module TestBench;
 		Reset = 0;
 		
 		#25
-		Operation_ID = `ASLA;
-		#10
-		Operation_ID = `ADDA;
-		#10
+		Operation_ID = `STA;
+		#20
+		Operation_ID = `LDA;
+		#20
 		Operation_ID = `ADDB;
-		#10
+		#20
 		Operation_ID = `SUBA;
+		#20
+		Operation_ID = `NOP;
 		#150
 		$finish;
 
