@@ -1,0 +1,46 @@
+////////////////////////////////////////////////////////////////////////
+///	5 Stage Pipeline
+////////////////////////////////////////////////////////////////////////
+
+Por:
+		Fabian Meléndez B.	B24056
+		Arturo Apú C.		B20386
+		Felipe Rincón R.	B25530
+		
+
+|| ------------------------------------------------------------------ ||
+||	Estructura	
+|| ------------------------------------------------------------------ ||
+
+El código está divido en partes (modulos).
+
+	Se creo un archivo Definitions.v para incluir las definiciones de las 
+instrucciones.
+
+	Se incluyen modulos collaterales como flip flops o contadores en el 
+archivo Collaterals.v
+
+	Se incluyen modulos de memoria ROM y RAM, para las memorias de datos
+e instrucciones. Se implementó una memoria ROM para las instrucciones, ya 
+que se decidió implementar un code parser, que consiste en un script que
+transforma el código de ensamblador en codigo de ROM. Para modificar la 
+ROM se puede editar el archivo RUN.w y simplemente ejecutar:
+	$ make	
+Esto en la carpeta de CODIGO.
+
+	Luego se implementaron cada uno de los modulos IF (Instruction Fetch),
+ID (Instruction Decode), EXC (Execution), MEM (Memory) y WB (Write Back)
+para cada uno de estos existe una carpeta con el codigo de la implementa-
+ción en verilog y además una carpeta de <Module>/Test/ en donde se encuen-
+tran los testbenchs para probarlos. Se puede ejecutar:
+	$ make
+Dentro de cada una de las carpetas de <Module>/Test/ para generar las 
+pruebas y observar las ondas.
+
+	Por ultimo se implementaron pruebas de todos lo modulos juntos en un
+solo testbench que se encuentra en CODIGO/Test/ aqui se puede observar los
+modulos juntos funcionando como un pipeline de 5 estapas.
+
+
+
+
