@@ -1,11 +1,11 @@
-`timescale 1ns / 1ps
+module pipeline
+(
+	input wire Clock,
+	input wire Reset,
+	output wire oRegA,
+	output wire oRegB
+);
 
-module TestBench;
-
-	// Clock and Reset Signals
-	reg Clock;
-	reg Reset;
-	
 	// Outputs from the IF module
 	wire [5:0] 	Operation_IF;
 	wire [9:0] 	Data_IF;
@@ -56,9 +56,9 @@ module TestBench;
 		.Reset(Reset|BranchTaken),		// 	Reset signal
 		.iOperation_IF(Operation_IF),	//	Input Operation from the IF		
 		.iData_IF(Data_IF),				//	Input Data from the IF
-		.iRegA(regA),					//	Register A
+		.iRegA(regA),					//	Reg A
 		.iCarryA(CarryA),				//	Carry A
-		.iRegB(regB),					//	Register B
+		.iRegB(regB),					//	Reg B
 		.iCarryB(CarryB),				//	Carry B
 		.oOperation_ID(Operation_ID),	//	Output Operation
 		.oData_ID(Data_ID),				//	Output Data
@@ -69,17 +69,17 @@ module TestBench;
 	Execution EXC
 	(
 		.Clock(Clock),					// 	Input Clock
-		.Reset(Reset),					//  Reset signal
-		.iOperation_ID(Operation_ID),	//	Input Operation from ID
-		.iData_ID(Data_ID),				//	Input Data from ID
-		.iReg_A(regA),					//	Register A
-		.iCarryA(CarryA),				// 	Carry A
-		.iReg_B(regB),					// 	Register B
-		.iCarryB(CarryB),				// 	Carry B
-		.oResult(Result),				//	Result of arithmetic or logic operation
-		.oCarry(Carry),					// 	Carry of arithmetic or logic operation
-		.oOperation_EXC(Operation_EXC),	//	Output Operation
-		.oData_EXC(Data_EXC)			//	Ouput Data
+		.Reset(Reset),
+		.iOperation_ID(Operation_ID),
+		.iData_ID(Data_ID),
+		.iReg_A(regA),
+		.iCarryA(CarryA),
+		.iReg_B(regB),
+		.iCarryB(CarryB),
+		.oResult(Result),
+		.oCarry(Carry),
+		.oOperation_EXC(Operation_EXC),
+		.oData_EXC(Data_EXC)
 	);
 	
 	// Memory
@@ -113,30 +113,4 @@ module TestBench;
 		.oCarryA(CarryA),
 		.oCarryB(CarryB)
 	);
-	always
-		begin
-			#10  Clock =  ! Clock;
-		end
-
-	initial begin
-		// GTKwave
-		$dumpfile("Pipeline.vcd");
-		$dumpvars;
-		
-		// Initialize Inputs
-		Clock = 0;
-		Reset = 0;
-		
-		// Reset Sequence
-		#15;
-		Reset = 1;
-		#20
-		Reset = 0;
-		
-		
-		#1000
-		$finish;
-
-	end
-      
 endmodule
