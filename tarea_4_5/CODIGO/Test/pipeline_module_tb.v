@@ -3,10 +3,10 @@ module entire_module_tb;
 	reg Clock;
 	reg Reset;
 	
-	wire A;
-	wire B;
+	wire [7:0] A;
+	wire [7:0] B;
 	
-	pipeline p1 (Clock, Reset, A, B);
+	pipeline UUT (Clock, Reset, A, B);
 	
 	always
 		begin
