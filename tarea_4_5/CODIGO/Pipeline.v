@@ -1,11 +1,11 @@
-`timescale 1ns / 1ps
+module pipeline
+(
+	input wire Clock,
+	input wire Reset,
+	output wire oRegA,
+	output wire oRegB
+);
 
-module TestBench;
-
-	// Clock and Reset Signals
-	reg Clock;
-	reg Reset;
-	
 	// Outputs from the IF module
 	wire [5:0] 	Operation_IF;
 	wire [9:0] 	Data_IF;
@@ -113,30 +113,4 @@ module TestBench;
 		.oCarryA(CarryA),
 		.oCarryB(CarryB)
 	);
-	always
-		begin
-			#10  Clock =  ! Clock;
-		end
-
-	initial begin
-		// GTKwave
-		$dumpfile("Pipeline.vcd");
-		$dumpvars;
-		
-		// Initialize Inputs
-		Clock = 0;
-		Reset = 0;
-		
-		// Reset Sequence
-		#15;
-		Reset = 1;
-		#20
-		Reset = 0;
-		
-		
-		#1000
-		$finish;
-
-	end
-      
 endmodule

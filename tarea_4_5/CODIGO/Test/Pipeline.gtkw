@@ -1,15 +1,15 @@
 [*]
-[*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
-[*] Wed Jul  1 00:19:24 2015
+[*] GTKWave Analyzer v3.3.34 (w)1999-2012 BSI
+[*] Wed Jul  1 01:07:30 2015
 [*]
-[dumpfile] "/home/felipe/Documentos/Estructuras de computadoras II/proyectos_estructuras/tarea_4_5/CODIGO/Test/Pipeline.vcd"
-[dumpfile_mtime] "Wed Jul  1 00:19:17 2015"
-[dumpfile_size] 9862
-[savefile] "/home/felipe/Documentos/Estructuras de computadoras II/proyectos_estructuras/tarea_4_5/CODIGO/Test/Pipeline.gtkw"
-[timestart] 35600
-[size] 1366 744
+[dumpfile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.vcd"
+[dumpfile_mtime] "Wed Jul  1 01:05:26 2015"
+[dumpfile_size] 16046
+[savefile] "/home/fabian/Documents/U/I-2015/Estructuras_II/proyectos/tarea_4_5/CODIGO/Test/Pipeline.gtkw"
+[timestart] 0
+[size] 1366 718
 [pos] -1 -1
-*-15.981613 130000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.981613 186000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TestBench.
 [treeopen] TestBench.ID.
 [treeopen] TestBench.IF.
@@ -29,32 +29,38 @@ TestBench.IF.ProgramCounter[9:0]
 @200
 -
 @22
-TestBench.Data_ID[9:0]
 TestBench.Operation_ID[5:0]
+TestBench.Data_ID[9:0]
 @28
 TestBench.BranchTaken
 @200
 -
 @22
+TestBench.EXC.oOperation_EXC[5:0]
 TestBench.Data_EXC[9:0]
-@28
+@421
 TestBench.Result[7:0]
+@28
 TestBench.Carry
 @200
 -
 @28
-TestBench.CarryA
-TestBench.CarryB
-TestBench.regA[7:0]
-TestBench.regB[7:0]
-@200
--
-@29
-TestBench.CarryFlag
-@23
-TestBench.MEM_Out[7:0]
-@29
 TestBench.ModA
 TestBench.ModB
+TestBench.CarryFlag
+@22
+TestBench.MEM_Out[7:0]
+@200
+-
+@24
+TestBench.regA[7:0]
+@420
+TestBench.CarryA
+@24
+TestBench.regB[7:0]
+@420
+TestBench.CarryB
+@200
+-
 [pattern_trace] 1
 [pattern_trace] 0

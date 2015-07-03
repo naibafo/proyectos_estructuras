@@ -7,24 +7,31 @@ module TestBench;
 	reg Reset;
 	
 	// Outputs from the ID module
-	wire [5:0] 	OperationIF;
-	wire [9:0] 	Data_IF;
+	reg Carry;
+	reg [7:0] Data_MEM;
+
+	reg	ModA; 
+	reg	ModB;
 	
-	// Inputs to mod
-	reg			BranchTaken; 
-	reg [9:0]	RelativeJump;
+	wire [7:0] RegA, RegB;
+	wire CarryA, CarryB;	
+	
 	// ---------------------
 	// Module instanciation:
 	// ---------------------
 	
-	InstructionFetcher UUT
+	WriteBack DUT
 	(
-		.Clock(Clock),				// 	Input Clock
+		.Clock(Clock),
 		.Reset(Reset),
-		.iBranchTaken(BranchTaken),
-		.iRelativeJump(RelativeJump),
-		.oOperation_IF(OperationIF),
-		.oData_IF(Data_IF)
+		.iData(Data_MEM),
+		.iCarry(Carry),
+		.iModA(ModA),
+		.iModB(ModB),
+		.oRegA(RegA),
+		.oRegB(RegB),
+		.oCarryA(CarryA),
+		.oCarryB(CarryB)
 	);
 	
 	
@@ -35,28 +42,41 @@ module TestBench;
 
 	initial begin
 		// GTKwave
-		$dumpfile("IF.vcd");
+		$dumpfile("WB.vcd");
 		$dumpvars;
 		
 		// Initialize Inputs
 		Clock = 0;
 		Reset = 0;
-		BranchTaken = 0;
-		RelativeJump = 10'b0;
+		
+		ModA = 1'b0;
+		ModB = 1'b0;
+		
+		Carry = 1'b0;
+		
+		Data_MEM = 8'b11111011;
 		
 		# 5
 		Reset = 1;
 		# 20
 		Reset = 0;
 		
-		# 40
-		BranchTaken = 1;
-		RelativeJump = 10'b1111111111;
-		
-		#20 
-		BranchTaken = 0;
-		RelativeJump = 10'b11;
-		
+		# 25
+		ModA = 1'b1;
+		#25
+		ModB = 1'b1;
+		Carry = 1'b1;
+		#25
+		ModA = 1'b0;
+		#25
+		ModB = 1'b0;
+		Carry = 1'b0;
+		#10
+		ModA = 1'b1;
+		ModB = 1'b1;
+		#25
+		ModA = 1'b0;
+		ModB = 1'b0;
 		#150
 		$finish;
 

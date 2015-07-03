@@ -80,7 +80,6 @@ assign Na = iRegA[7];	// Sign flag for reg A
 assign Nb = iRegB[7];	// Sign flag for reg B
 ////////////////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////////////////
 always @ (posedge Clock)
 	////////////////////////////////////////////////////////////////////
@@ -156,12 +155,18 @@ always @ (posedge Clock)
 					Branch if reg B is positive.
 		*/
 		`BBPL:	oBranchTaken 	= 	~Nb;	// Take a branch if reg B is positive.
+		/*
+			JMP:
+					Take Branch
+		*/
+		`JMP:	oBranchTaken	= 	1;
 		////////////////////////////////////////////////////////////////
 		/*
 			When its not a branch instruction:
 				- Indicate that there is no branch to take
 				- Output the data we got
 		*/
+				
 		default:
 			begin
 				oBranchTaken 	=	1'b0;			// No branch needed
